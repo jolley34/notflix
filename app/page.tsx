@@ -16,7 +16,7 @@ export default function Home() {
     <>
       <div className="relative">
         <VideoComponent />
-        <div className="absolute w-full px-20 z-50">
+        <div className="absolute w-full px-20 z-20">
           <div className="flex flex-col gap-12 ">
             {Genre.map((genre, index) => (
               <div
