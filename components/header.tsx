@@ -1,7 +1,7 @@
 export default function Header() {
   return (
     <>
-      <header className="header bg-black px-20 py-4 flex justify-between flex-wrap">
+      <header className="header fixed bg-black px-20 py-4 flex justify-between flex-wrap w-full">
         <div className="flex items-center gap-10 flex-wrap">
           <h2 className="title scroll-m-20 text-xl font-bold tracking-tight lg:text-3xl text-red-600">
             NotFlix
