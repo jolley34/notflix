@@ -1,11 +1,11 @@
 export default function VideoComponent() {
   return (
     <div
-      className="relative h-[120vh] w-screen overflow-hidden"
+      className="relative h-screen w-screen overflow-hidden"
       style={{ background: "hsl(var(--background))" }}
     >
       <video
-        className="w-full h-[120vh] object-cover"
+        className="w-full h-screen object-cover"
         src="/frontpage-video-v2.mp4"
         autoPlay
         muted

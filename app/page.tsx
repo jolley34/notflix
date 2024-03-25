@@ -16,11 +16,14 @@ export default function Home() {
     <>
       <div className="relative">
         <VideoComponent />
-        <div className="absolute w-full px-20 my-6 -translate-y-1/2 z-50">
-          <div className="flex flex-col gap-6  ">
+        <div className="absolute w-full px-20 z-50">
+          <div className="flex flex-col gap-12 ">
             {Genre.map((genre, index) => (
-              <div key={index} className="flex flex-col gap-2 translate-y-1/2 ">
-                <h2 className="title text-xl font-bold tracking-tight lg:text-3xl">
+              <div
+                key={index}
+                className="flex flex-col gap-4 -translate-y-1/2 "
+              >
+                <h2 className="title text-xl font-bold tracking-tight lg:text-2xl">
                   {genre}
                 </h2>
                 <Carousel
@@ -32,10 +35,10 @@ export default function Home() {
                     {movies.map((movie, index) => (
                       <CarouselItem
                         key={index}
-                        className="md:basis-1/3 lg:basis-1/6"
+                        className="sm:basis-1/2 md:basis-1/4 lg:basis-1/6"
                       >
                         <Card className="p-0 border-0 cursor-pointer">
-                          <CardContent className="flex items-center justify-center p-0 h-64 overflow-hidden">
+                          <CardContent className="flex items-center justify-center p-0 h-56 overflow-hidden">
                             <img
                               className="object-cover w-full h-full transform transition-transform duration-500 hover:scale-105 ease-in-out"
                               src={movie.thumbnail}
