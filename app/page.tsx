@@ -13,9 +13,9 @@ export default function Home() {
   return (
     <>
       <VideoComponent />
-      <div className="px-14">
+      <div className="w-full px-20 py-5 z-10">
         <h2 className="title scroll-m-20 text-xl font-bold tracking-tight lg:text-3xl py-4">
-          Trending
+          Nyheter
         </h2>
         <Carousel
           opts={{
@@ -26,7 +26,7 @@ export default function Home() {
             {movies.map((movie, index) => (
               <CarouselItem key={index} className="md:basis-1/3 lg:basis-1/6 ">
                 <Card className="p-0 border-0 rounded-xl">
-                  <CardContent className="flex items-center justify-center p-0 h-72">
+                  <CardContent className="flex items-center justify-center p-0 h-64">
                     <img
                       className="object-cover w-full h-full rounded-xl"
                       src={movie.thumbnail}
