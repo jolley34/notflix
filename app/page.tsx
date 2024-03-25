@@ -27,15 +27,15 @@ export default function Home() {
               }}
             >
               <CarouselContent>
-                {movies.map((movie, movieIndex) => (
+                {movies.map((movie, index) => (
                   <CarouselItem
-                    key={movieIndex}
+                    key={index}
                     className="md:basis-1/3 lg:basis-1/6 "
                   >
                     <Card className="p-0 border-0  cursor-pointer">
                       <CardContent className="flex items-center justify-center p-0 h-64 overflow-hidden">
                         <img
-                          className="object-cover w-full h-full transform transition-transform duration-300 hover:scale-105 ease-in-out"
+                          className="object-cover w-full h-full transform transition-transform duration-500 hover:scale-105 ease-in-out"
                           src={movie.thumbnail}
                           alt={movie.title}
                         />
