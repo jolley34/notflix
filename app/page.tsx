@@ -12,7 +12,6 @@ export default function Home() {
             <img className="object-cover h-full w-auto" src={movie.thumbnail} />
           </Card>
         ))}
-        s
       </div>
     </>
   );
