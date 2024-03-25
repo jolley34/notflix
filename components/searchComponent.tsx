@@ -3,11 +3,11 @@ import { Input } from "@/components/ui/input";
 import { useEffect, useRef, useState } from "react";
 
 export default function SearchComponent() {
-  const [showSearchInput, setShowSearchInput] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const inputRef = useRef<HTMLDivElement>(null);
 
   const toggleSearchInput = () => {
-    setShowSearchInput(!showSearchInput);
+    setIsOpen(true);
   };
 
   useEffect(() => {
@@ -16,7 +16,7 @@ export default function SearchComponent() {
         inputRef.current &&
         !inputRef.current.contains(event.target as Node)
       ) {
-        setShowSearchInput(false);
+        setIsOpen(false);
       }
     }
 
@@ -28,8 +28,8 @@ export default function SearchComponent() {
 
   return (
     <div ref={inputRef}>
-      {showSearchInput ? (
-        <Input type="search" placeholder="use client" />
+      {isOpen ? (
+        <Input type="search" placeholder="Titlar, filmer, serier" />
       ) : (
         <svg
           xmlns="http://www.w3.org/2000/svg"
