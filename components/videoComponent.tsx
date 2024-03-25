@@ -3,9 +3,10 @@ export default function VideoComponent() {
     <div className="h-screen w-screen">
       <video
         className="w-screen h-screen object-cover"
-        src="/strangerthings-trailer-edit.mp4"
+        src="/frontpage-video-v2.mp4"
         autoPlay
         muted
+        loop
       ></video>
     </div>
   );

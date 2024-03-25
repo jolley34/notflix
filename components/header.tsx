@@ -1,12 +1,12 @@
 export default function Header() {
   return (
     <>
-      <div className="header px-8 py-4 flex justify-between flex-wrap ">
-        <div className="flex items-center gap-6 flex-wrap">
+      <header className="header bg-black px-8 py-4 flex justify-between flex-wrap">
+        <div className="flex items-center gap-10 flex-wrap">
           <h2 className="title scroll-m-20 text-xl font-bold tracking-tight lg:text-3xl text-red-600">
             NotFlix
           </h2>
-          <ul className="navbar flex gap-2 lg:text-sm">
+          <ul className="navbar flex gap-4 lg:text-sm font-normal">
             <li>Hem</li>
             <li>Serier</li>
             <li>Filmer</li>
@@ -59,7 +59,7 @@ export default function Header() {
             </li>
           </ul>
         </div>
-      </div>
+      </header>
     </>
   );
 }
