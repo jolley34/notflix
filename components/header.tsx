@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import SearchComponent from "./searchComponent";
 
 export default function Header() {
   const [scrolling, setScrolling] = useState(false);
@@ -24,7 +25,7 @@ export default function Header() {
   return (
     <>
       <header
-        className={`header fixed px-20 py-4 flex justify-between flex-wrap w-full ${
+        className={`header z-10 fixed px-20 py-4 flex justify-between flex-wrap w-full ${
           scrolling
             ? "bg-black transition-colors duration-700"
             : "bg-transparent transition-colors duration-700"
@@ -45,22 +46,7 @@ export default function Header() {
         </div>
         <div className="flex flex-wrap">
           <ul className="second-navbar flex gap-4 lg:text-sm items-center">
-            <li>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                className="w-6 h-6"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
-                />
-              </svg>
-            </li>
+            <SearchComponent />
             <li>Barn</li>
             <li>
               <svg
