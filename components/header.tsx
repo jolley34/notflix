@@ -1,9 +1,37 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
 export default function Header() {
+  const [scrolling, setScrolling] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY === 0) {
+        setScrolling(false);
+      } else {
+        setScrolling(true);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <>
-      <header className="header fixed bg-black px-20 py-4 flex justify-between flex-wrap w-full">
+      <header
+        className={`header fixed px-20 py-4 flex justify-between flex-wrap w-full ${
+          scrolling
+            ? "bg-black transition-colors duration-700"
+            : "bg-transparent transition-colors duration-700"
+        }`}
+      >
         <div className="flex items-center gap-10 flex-wrap">
-          <h2 className="title scroll-m-20 text-xl font-bold tracking-tight lg:text-3xl text-red-600">
+          <h2 className="title scroll-m-20 text-xl font-bold tracking-tight lg:text-3xl text-red-600 ">
             NotFlix
           </h2>
           <ul className="navbar flex gap-4 lg:text-sm font-normal">
