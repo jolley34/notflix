@@ -1,35 +1,50 @@
 "use client";
+
 import { Input } from "@/components/ui/input";
-import { useEffect, useRef, useState } from "react";
+import { useSearch } from "@/context/SearchContext";
+import React, { useEffect, useRef, useState } from "react";
 
 export default function SearchComponent() {
   const [isOpen, setIsOpen] = useState(false);
-  const inputRef = useRef<HTMLDivElement>(null);
+  const { searchTerm, setSearchTerm, searchResults } = useSearch();
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const toggleSearchInput = () => {
-    setIsOpen(true);
+    setIsOpen(!isOpen);
+    if (!isOpen) {
+      setSearchTerm("");
+    }
+  };
+
+  const handleSearchInputChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setSearchTerm(event.target.value);
   };
 
   useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (
-        inputRef.current &&
-        !inputRef.current.contains(event.target as Node)
-      ) {
-        setIsOpen(false);
-      }
+    if (!isOpen) {
+      setSearchTerm("");
     }
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [inputRef]);
+  }, [isOpen, setSearchTerm]);
 
   return (
     <div ref={inputRef}>
       {isOpen ? (
-        <Input type="search" placeholder="Titlar, filmer, serier" />
+        <div className="flex">
+          <Input
+            type="search"
+            placeholder="Titlar, filmer, serier"
+            value={searchTerm}
+            onChange={handleSearchInputChange}
+          />
+          <button
+            className="ml-2 bg-red-600 text-white px-3 py-1 rounded"
+            onClick={toggleSearchInput}
+          >
+            Avbryt
+          </button>
+        </div>
       ) : (
         <svg
           xmlns="http://www.w3.org/2000/svg"

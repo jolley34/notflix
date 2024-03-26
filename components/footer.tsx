@@ -4,7 +4,7 @@ export default function Footer() {
       <div className="flex justify-between  items-center">
         <div className="flex gap-2 items-center">
           <h1>Notflix ™</h1>
-          <h1 className="font-thin text-xs ">1997-2004</h1>
+          <h1 className="font-thin text-xs ">1997-2024</h1>
         </div>
 
         <div>
