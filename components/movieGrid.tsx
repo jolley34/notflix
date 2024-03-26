@@ -98,10 +98,10 @@ export default function MovieGrid() {
                 {searchResults.map((movie, index) => (
                   <CarouselItem
                     key={index}
-                    className="sm:basis-1/2 md:basis-1/4 lg:basis-1/6"
+                    className="sm:basis-1/2 md:basis-1/4 lg:basis-1/4"
                   >
                     <Card className="p-0 border-0 cursor-pointer">
-                      <CardContent className="flex items-center justify-center p-0 h-56">
+                      <CardContent className="flex items-center justify-center p-0 h-64">
                         <img
                           className="object-cover w-full h-full transform transition-transform duration-500 hover:scale-105 ease-in-out"
                           src={movie.thumbnail}
@@ -117,14 +117,14 @@ export default function MovieGrid() {
             </Carousel>
           </section>
         )}
-        {searchResults.length === 0 &&
-          trendingMovies.length === 0 &&
-          recommendedMovies.length === 0 && (
-            <p className="text-xl text-center font-bold tracking-tight lg:text-2xl">
-              Det finns inga sökresultat.
-            </p>
-          )}
       </div>
+      {searchResults.length === 0 &&
+        trendingMovies.length === 0 &&
+        recommendedMovies.length === 0 && (
+          <p className="text-xl text-center font-bold tracking-tight lg:text-2xl">
+            Det finns inga sökresultat.
+          </p>
+        )}
     </div>
   );
 }
