@@ -12,7 +12,7 @@ export default function FavoriteButton() {
     setIsFavorite(!isFavorite);
   };
   return (
-    <>
+    <div>
       <IconButton onClick={toggleFavorite} color="inherit">
         {isFavorite ? (
           <FavoriteIcon fontSize="medium" />
@@ -20,6 +20,6 @@ export default function FavoriteButton() {
           <FavoriteBorderIcon fontSize="medium" />
         )}
       </IconButton>
-    </>
+    </div>
   );
 }
