@@ -1,8 +1,8 @@
 "use client";
 
 import {
-  createContext,
   PropsWithChildren,
+  createContext,
   useContext,
   useEffect,
   useState,
@@ -26,53 +26,56 @@ interface MovieContextValue {
   movies: Movie[];
   trendingMovies: Movie[];
   recommendedMovies: Movie[];
-  setAllMovies: () => void;
+  favoriteMovies: Movie[];
+  toggleFavorite: (slug: string) => void;
 }
 
 const MovieContext = createContext<MovieContextValue>({
+  movies: [],
   trendingMovies: [],
   recommendedMovies: [],
-  setAllMovies: () => {},
-  movies: [],
+  favoriteMovies: [],
+  toggleFavorite: () => {},
 });
 
-export default function MovieProvider(props: PropsWithChildren<{}>) {
+export default function MovieProvider({ children }: PropsWithChildren<{}>) {
   const [movies, setMovies] = useState<Movie[]>(moviesData);
-
-  const getTrendingMovies = () => {
-    return movies.filter((movie) => movie.isTrending);
-  };
-
-  const getRecommendedMovies = () => {
-    return movies.filter((movie) => !movie.isTrending);
-  };
-
-  const [trendingMovies, setTrendingMovies] = useState<Movie[]>(
-    getTrendingMovies()
-  );
-  const [recommendedMovies, setRecommendedMovies] = useState<Movie[]>(
-    getRecommendedMovies()
-  );
+  const [favoriteMovies, setFavoriteMovies] = useState<Movie[]>([]);
 
   useEffect(() => {
-    setMovies(moviesData);
+    const savedFavorites = localStorage.getItem("favoriteMovies");
+    if (savedFavorites) {
+      setFavoriteMovies(JSON.parse(savedFavorites));
+    }
   }, []);
 
-  const setAllMovies = () => {
-    setTrendingMovies(getTrendingMovies());
-    setRecommendedMovies(getRecommendedMovies());
+  useEffect(() => {
+    localStorage.setItem("favoriteMovies", JSON.stringify(favoriteMovies));
+  }, [favoriteMovies]);
+
+  const toggleFavorite = (slug: string) => {
+    const isFavorite = favoriteMovies.some((movie) => movie.slug === slug);
+    if (isFavorite) {
+      setFavoriteMovies(favoriteMovies.filter((movie) => movie.slug !== slug));
+    } else {
+      const movieToAdd = movies.find((movie) => movie.slug === slug);
+      if (movieToAdd) {
+        setFavoriteMovies([...favoriteMovies, movieToAdd]);
+      }
+    }
   };
 
   return (
     <MovieContext.Provider
       value={{
         movies,
-        trendingMovies,
-        recommendedMovies,
-        setAllMovies,
+        trendingMovies: movies.filter((movie) => movie.isTrending),
+        recommendedMovies: movies.filter((movie) => !movie.isTrending),
+        favoriteMovies,
+        toggleFavorite,
       }}
     >
-      {props.children}
+      {children}
     </MovieContext.Provider>
   );
 }

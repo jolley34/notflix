@@ -30,7 +30,7 @@ export default function FilmView({ params }: PageProps) {
           <div className="flex flex-col gap-2">
             <div className="flex align-middle justify-between">
               <h1 className="font-bold text-4xl">{movie.title}</h1>
-              <FavoriteButton />
+              <FavoriteButton slug={movie.slug} />
             </div>
             <p className="font-thin ">Release : {movie.year}</p>
             <p className="font-thin ">Genre : {movie.genre}</p>

@@ -3,17 +3,15 @@
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { IconButton } from "@mui/material";
-import { useState } from "react";
+import { useMovies } from "../context/MovieContext";
 
-export default function FavoriteButton() {
-  const [isFavorite, setIsFavorite] = useState(false);
+export default function FavoriteButton({ slug }: { slug: string }) {
+  const { favoriteMovies, toggleFavorite } = useMovies();
+  const isFavorite = favoriteMovies.some((movie) => movie.slug === slug);
 
-  const toggleFavorite = () => {
-    setIsFavorite(!isFavorite);
-  };
   return (
     <div>
-      <IconButton onClick={toggleFavorite} color="inherit">
+      <IconButton onClick={() => toggleFavorite(slug)} color="inherit">
         {isFavorite ? (
           <FavoriteIcon fontSize="medium" />
         ) : (

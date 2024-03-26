@@ -55,12 +55,13 @@ export default function MovieGrid() {
                             </Link>
                           </CardContent>
                           <div className="relative p-2 text-white bg-zinc-900 ">
-                            <FavoriteButton />
+                            <FavoriteButton slug={movie.slug} />
                           </div>
                         </Card>
                       </CarouselItem>
                     ))}
                   </CarouselContent>
+
                   <CarouselPrevious className="absolute top-1/2 left-2 transform -translate-y-1/2" />
                   <CarouselNext className="absolute top-1/2 right-2 transform -translate-y-1/2" />
                 </Carousel>
@@ -98,7 +99,7 @@ export default function MovieGrid() {
                             </Link>
                           </CardContent>
                           <div className="relative p-2 text-white bg-zinc-900 ">
-                            <FavoriteButton />
+                            <FavoriteButton slug={movie.slug} />
                           </div>
                         </Card>
                       </CarouselItem>
@@ -141,7 +142,7 @@ export default function MovieGrid() {
                             </Link>
                           </CardContent>
                           <div className="relative p-2 text-white bg-zinc-900 ">
-                            <FavoriteButton />
+                            <FavoriteButton slug={movie.slug} />
                           </div>
                         </Card>
                       </CarouselItem>

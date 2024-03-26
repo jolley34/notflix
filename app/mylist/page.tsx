@@ -1,3 +1,14 @@
+"use client";
+import { useMovies } from "../../context/MovieContext";
+
 export default function MyList() {
-  return <></>;
+  const { favoriteMovies } = useMovies();
+
+  return (
+    <div>
+      {favoriteMovies.map((movie) => (
+        <div key={movie.slug}>{movie.title}</div>
+      ))}
+    </div>
+  );
 }
