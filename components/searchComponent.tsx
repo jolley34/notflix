@@ -21,37 +21,21 @@ export default function SearchComponent() {
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     setSearchTerm(event.target.value);
-
-    if (event.target.value === "") {
-      setAllMovies();
-    }
-  };
-
-  const handleSearch = () => {
-    setMoviesSearchTerm(searchTerm.trim());
-  };
-
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === "Enter") {
-      handleSearch();
-    }
   };
 
   useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (
-        inputRef.current &&
-        !inputRef.current.contains(event.target as Node)
-      ) {
-        setIsOpen(false);
-      }
-    }
+    const delayDebounceFn = setTimeout(() => {
+      setMoviesSearchTerm(searchTerm.trim());
+    }, 300);
 
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [inputRef]);
+    return () => clearTimeout(delayDebounceFn);
+  }, [searchTerm, setMoviesSearchTerm]);
+
+  useEffect(() => {
+    if (!isOpen) {
+      setSearchTerm(""); // Återställ söktermen när sökfältet stängs
+    }
+  }, [isOpen]);
 
   return (
     <div ref={inputRef}>
@@ -62,13 +46,12 @@ export default function SearchComponent() {
             placeholder="Titlar, filmer, serier"
             value={searchTerm}
             onChange={handleSearchInputChange}
-            onKeyDown={handleKeyDown}
           />
           <button
             className="ml-2 bg-red-600 text-white px-3 py-1 rounded"
-            onClick={handleSearch}
+            onClick={toggleSearchInput}
           >
-            Sök
+            Avbryt
           </button>
         </div>
       ) : (
