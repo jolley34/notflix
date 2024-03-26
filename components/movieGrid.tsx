@@ -23,15 +23,27 @@ export default function MovieGrid() {
 
   return (
     <div>
-      {!isSearching && <VideoComponent />}
-      <div className={`${isSearching ? "px-14 z-20" : "w-full px-14 z-20"}`}>
+      {!isNoResults && !isSearching && <VideoComponent />}
+      <div
+        className={`${
+          isSearching || isNoResults ? "px-14 z-20" : "w-full px-14 z-20"
+        }`}
+      >
         <div
           className={`${
-            isSearching
+            isSearching || isNoResults
               ? "flex w-full h-screen items-center justify-center "
               : "flex flex-col"
           }`}
         >
+          <div>
+            {isNoResults && (
+              <p className="text-xl text-center font-bold tracking-tight lg:text-2xl">
+                Det finns inga sökresultat.
+              </p>
+            )}
+          </div>
+
           {!isNoResults && (
             <>
               {!searchTerm && trendingMovies.length > 0 && (
@@ -164,12 +176,6 @@ export default function MovieGrid() {
                 </section>
               )}
             </>
-          )}
-
-          {isNoResults && (
-            <p className="text-xl text-center font-bold tracking-tight lg:text-2xl">
-              Det finns inga sökresultat.
-            </p>
           )}
         </div>
       </div>
