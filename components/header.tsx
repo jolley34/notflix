@@ -27,7 +27,7 @@ export default function Header() {
       <header
         className={`header z-50 fixed px-20 py-4 flex justify-between flex-wrap w-full ${
           scrolling
-            ? "bg-black transition-colors duration-700"
+            ? "bg-secondary-foreground transition-colors duration-700"
             : "bg-transparent transition-colors duration-700"
         }`}
       >
