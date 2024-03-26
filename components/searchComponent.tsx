@@ -2,12 +2,26 @@
 
 import { Input } from "@/components/ui/input";
 import { useSearch } from "@/context/SearchContext";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 export default function SearchComponent() {
   const [isOpen, setIsOpen] = useState(false);
   const { searchTerm, setSearchTerm, searchResults } = useSearch();
   const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    const handleKeyPress = (event: KeyboardEvent) => {
+      if (event.key === "Escape" && isOpen) {
+        toggleSearchInput();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyPress);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyPress);
+    };
+  }, [isOpen]);
 
   const toggleSearchInput = () => {
     if (isOpen) {

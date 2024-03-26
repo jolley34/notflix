@@ -30,14 +30,14 @@ export default function MyList() {
           <CarouselContent>
             {favoriteMovies.map((movie) => (
               <CarouselItem className="sm:basis-1/2 md:basis-1/4 lg:basis-1/6">
-                <Card className="p-0 border-0 cursor-pointer ">
-                  <CardContent className="flex items-center justify-center p-0 h-56 overflow-hidden ">
+                <Card className="p-0  border-0 cursor-pointer ">
+                  <CardContent className="flex items-center justify-center p-0 w-full h-full overflow-hidden ">
                     <Link
                       href={`/filmview/${movie.slug}`}
                       as={`/filmview/${movie.slug}`}
                     >
                       <img
-                        className="object-cover w-full h-full "
+                        className="object-cover w-full h-full"
                         src={movie.thumbnail}
                         alt={movie.title}
                       />
