@@ -14,7 +14,7 @@ export default function VideoComponent() {
       <img
         src="/StrangerThings_logo.svg"
         alt="Stranger Things Logo"
-        className="absolute top-1/3 left-20 transform -translate-y-1/2"
+        className="absolute top-1/3 left-14 transform -translate-y-1/2"
         style={{ maxWidth: "30%", maxHeight: "30%", opacity: 0.7 }}
       />
       <div
