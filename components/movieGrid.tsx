@@ -47,7 +47,7 @@ export default function MovieGrid() {
           {!isNoResults && (
             <>
               {!searchTerm && trendingMovies.length > 0 && (
-                <section className="flex flex-col gap-4 -translate-y-1/2 ">
+                <section className="flex flex-col gap-4 -translate-y-1/2 w-full">
                   <h2 className="title text-xl font-medium tracking-tight lg:text-2xl">
                     Trendar just nu
                   </h2>
@@ -61,7 +61,7 @@ export default function MovieGrid() {
                       {trendingMovies.map((movie, index) => (
                         <CarouselItem
                           key={index}
-                          className="sm:basis-1/2 md:basis-1/4 lg:basis-1/6"
+                          className="sm:basis-1/2 md:basis-1/4 lg:basis-1/6 w-full"
                         >
                           <Card className="p-0 border-0 cursor-pointer ">
                             <CardContent className="flex items-center justify-center p-0 h-56 ">
@@ -91,7 +91,7 @@ export default function MovieGrid() {
               )}
 
               {!searchTerm && recommendedMovies.length > 0 && (
-                <section className="flex flex-col gap-4 -translate-y-1/3">
+                <section className="flex flex-col gap-4 -translate-y-1/3 w-full">
                   <h2 className="title text-xl font-medium tracking-tight lg:text-2xl">
                     Rekommenderat för dig
                   </h2>
@@ -105,7 +105,7 @@ export default function MovieGrid() {
                       {recommendedMovies.map((movie, index) => (
                         <CarouselItem
                           key={index}
-                          className="sm:basis-1/2 md:basis-1/4 lg:basis-1/6"
+                          className="sm:basis-1/2 md:basis-1/4 lg:basis-1/6 w-full"
                         >
                           <Card className="p-0 border-0 cursor-pointer ">
                             <CardContent className="flex items-center justify-center p-0 h-56 overflow-hidden ">
@@ -134,7 +134,7 @@ export default function MovieGrid() {
               )}
 
               {searchResults.length > 0 && (
-                <section className="flex flex-col gap-4 ">
+                <section className="flex flex-col gap-4 w-full">
                   <h2 className="title text-xl font-medium tracking-tight lg:text-2xl">
                     Sökresultat
                   </h2>
@@ -148,7 +148,7 @@ export default function MovieGrid() {
                       {searchResults.map((movie, index) => (
                         <CarouselItem
                           key={index}
-                          className="sm:basis-1/2 md:basis-1/4 lg:basis-1/4"
+                          className="sm:basis-1/2 md:basis-1/4 lg:basis-1/4 w-full"
                         >
                           <Card className="p-0 border-0 cursor-pointer">
                             <CardContent className="flex items-center justify-center p-0 h-64">

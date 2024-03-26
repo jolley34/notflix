@@ -20,16 +20,17 @@ export default function MyList() {
           align: "start",
           slidesToScroll: 1,
         }}
+        className="w-full"
       >
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 ">
           {favoriteMovies.length > 0 ? (
             <h1 className="text-2xl">Din lista</h1>
           ) : (
-            <h1>Du har inget i din lista ännu</h1>
+            <h1 className="text-center">Du har inget i din lista ännu</h1>
           )}
           <CarouselContent>
             {favoriteMovies.map((movie) => (
-              <CarouselItem className="sm:basis-1/2 md:basis-1/4 lg:basis-1/6">
+              <CarouselItem className="sm:basis-1/2 md:basis-1/4 lg:basis-1/6 w-full">
                 <Card className="p-0  border-0 cursor-pointer ">
                   <CardContent className="flex items-center justify-center p-0 w-full h-full overflow-hidden ">
                     <Link
