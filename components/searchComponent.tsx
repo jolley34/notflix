@@ -9,10 +9,37 @@ export default function SearchComponent() {
   const { searchTerm, setSearchTerm, searchResults } = useSearch();
   const inputRef = useRef<HTMLInputElement>(null);
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        inputRef.current &&
+        !inputRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
+        setSearchTerm("");
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [setIsOpen, setSearchTerm]);
+
   const toggleSearchInput = () => {
     setIsOpen(!isOpen);
-    if (!isOpen) {
+    if (
+      !isOpen &&
+      inputRef.current &&
+      inputRef.current instanceof HTMLInputElement
+    ) {
       setSearchTerm("");
+      inputRef.current.focus();
+      const inputLength = inputRef.current.value
+        ? inputRef.current.value.length
+        : 0;
+      inputRef.current.setSelectionRange(0, inputLength);
     }
   };
 
@@ -21,12 +48,6 @@ export default function SearchComponent() {
   ) => {
     setSearchTerm(event.target.value);
   };
-
-  useEffect(() => {
-    if (!isOpen) {
-      setSearchTerm("");
-    }
-  }, [isOpen, setSearchTerm]);
 
   return (
     <div ref={inputRef}>
@@ -37,6 +58,7 @@ export default function SearchComponent() {
             placeholder="Titlar, filmer, serier"
             value={searchTerm}
             onChange={handleSearchInputChange}
+            autoFocus
           />
           <button
             className="ml-2 bg-red-600 text-white px-3 py-1 rounded"
