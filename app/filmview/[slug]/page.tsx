@@ -4,6 +4,7 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import IconButton from "@mui/material/IconButton";
 import { useState } from "react";
 
+import { Button } from "@/components/ui/button";
 import { useMovies } from "../../../context/MovieContext";
 
 type PageProps = { params: { slug: string } };
@@ -54,6 +55,7 @@ export default function FilmView({ params }: PageProps) {
               {movie.actors.length > 1 && "and"} {movie.actors.slice(-1)}
             </p>
             <p className="font-thin ">MPA film rating : {movie.rating}</p>{" "}
+            <Button>Spela Film</Button>
           </div>
         </section>
       </div>
