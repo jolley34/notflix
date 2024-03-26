@@ -19,9 +19,11 @@ export interface Movie {
   thumbnail: string;
   isTrending?: boolean;
   slug: string;
+  video: string;
 }
 
 interface MovieContextValue {
+  movies: Movie[];
   trendingMovies: Movie[];
   recommendedMovies: Movie[];
   setAllMovies: () => void;
@@ -31,6 +33,7 @@ const MovieContext = createContext<MovieContextValue>({
   trendingMovies: [],
   recommendedMovies: [],
   setAllMovies: () => {},
+  movies: [],
 });
 
 export default function MovieProvider(props: PropsWithChildren<{}>) {
@@ -63,6 +66,7 @@ export default function MovieProvider(props: PropsWithChildren<{}>) {
   return (
     <MovieContext.Provider
       value={{
+        movies,
         trendingMovies,
         recommendedMovies,
         setAllMovies,
