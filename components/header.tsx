@@ -57,9 +57,9 @@ export default function Header() {
         </div>
         <div className="flex flex-wrap">
           <ul className="second-navbar flex gap-4 lg:text-sm items-center">
-            {!pathname.startsWith("/filmview" && "/mylist") && (
-              <SearchComponent />
-            )}
+            {!(
+              pathname.startsWith("/filmview") || pathname.startsWith("/mylist")
+            ) && <SearchComponent />}
             <li>Barn</li>
             <li>
               <svg
