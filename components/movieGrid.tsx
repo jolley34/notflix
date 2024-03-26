@@ -19,7 +19,7 @@ export default function MovieGrid() {
   const isNoResults = searchResults.length === 0 && !isSearchEmpty;
 
   return (
-    <div className="w-full px-20 z-20 ">
+    <div className="w-full px-14 z-20 ">
       <div className="flex flex-col ">
         {!isNoResults && (
           <>
