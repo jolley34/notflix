@@ -1,13 +1,27 @@
 "use client";
+
 import { Input } from "@/components/ui/input";
+import { useMovies } from "@/context/MovieContext";
 import { useEffect, useRef, useState } from "react";
 
 export default function SearchComponent() {
   const [isOpen, setIsOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
   const inputRef = useRef<HTMLDivElement>(null);
+  const { setSearchTerm: setMoviesSearchTerm } = useMovies();
 
   const toggleSearchInput = () => {
-    setIsOpen(true);
+    setIsOpen(!isOpen);
+  };
+
+  const handleSearchInputChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const handleSearch = () => {
+    setMoviesSearchTerm(searchTerm.trim());
   };
 
   useEffect(() => {
@@ -29,7 +43,20 @@ export default function SearchComponent() {
   return (
     <div ref={inputRef}>
       {isOpen ? (
-        <Input type="search" placeholder="Titlar, filmer, serier" />
+        <div className="flex">
+          <Input
+            type="search"
+            placeholder="Titlar, filmer, serier"
+            value={searchTerm}
+            onChange={handleSearchInputChange}
+          />
+          <button
+            className="ml-2 bg-red-600 text-white px-3 py-1 rounded"
+            onClick={handleSearch}
+          >
+            Sök
+          </button>
+        </div>
       ) : (
         <svg
           xmlns="http://www.w3.org/2000/svg"

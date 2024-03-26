@@ -1,4 +1,5 @@
 "use client";
+"use client";
 import { useMovies } from "@/context/MovieContext";
 import { Card, CardContent } from "./ui/card";
 import {
