@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 import { useEffect, useState } from "react";
 import SearchComponent from "./searchComponent";
 
@@ -32,11 +34,16 @@ export default function Header() {
         }`}
       >
         <div className="flex items-center gap-10 flex-wrap">
-          <h2 className="title scroll-m-20 text-xl font-bold tracking-tight lg:text-3xl text-red-600 ">
-            NotFlix
-          </h2>
+          <Link href={"/"}>
+            <h2 className="title scroll-m-20 text-xl font-bold tracking-tight lg:text-3xl text-red-600 cursor-pointer">
+              NotFlix
+            </h2>
+          </Link>
+
           <ul className="navbar flex gap-4 lg:text-sm font-normal">
-            <li>Hem</li>
+            <Link href={"/"}>
+              <li className="cursor-pointer">Hem</li>
+            </Link>
             <li>Serier</li>
             <li>Filmer</li>
             <li>Nytt och populärt</li>
