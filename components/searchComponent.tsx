@@ -1,19 +1,18 @@
 "use client";
 
 import { Input } from "@/components/ui/input";
-import { useMovies } from "@/context/MovieContext";
-import { useEffect, useRef, useState } from "react";
+import { useSearch } from "@/context/SearchContext";
+import React, { useEffect, useRef, useState } from "react";
 
 export default function SearchComponent() {
   const [isOpen, setIsOpen] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
+  const { searchTerm, setSearchTerm, searchResults } = useSearch();
   const inputRef = useRef<HTMLInputElement>(null);
-  const { setSearchTerm: setMoviesSearchTerm, setAllMovies } = useMovies();
 
   const toggleSearchInput = () => {
     setIsOpen(!isOpen);
     if (!isOpen) {
-      setAllMovies();
+      setSearchTerm("");
     }
   };
 
@@ -24,18 +23,10 @@ export default function SearchComponent() {
   };
 
   useEffect(() => {
-    const delayDebounceFn = setTimeout(() => {
-      setMoviesSearchTerm(searchTerm.trim());
-    }, 300);
-
-    return () => clearTimeout(delayDebounceFn);
-  }, [searchTerm, setMoviesSearchTerm]);
-
-  useEffect(() => {
     if (!isOpen) {
       setSearchTerm("");
     }
-  }, [isOpen]);
+  }, [isOpen, setSearchTerm]);
 
   return (
     <div ref={inputRef}>

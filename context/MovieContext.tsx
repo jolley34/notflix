@@ -1,6 +1,6 @@
 "use client";
 
-import React, {
+import {
   createContext,
   PropsWithChildren,
   useContext,
@@ -20,35 +20,20 @@ export interface Movie {
   isTrending?: boolean;
 }
 
-export interface ContextValue {
+interface MovieContextValue {
   trendingMovies: Movie[];
   recommendedMovies: Movie[];
-  searchResults: Movie[];
-  setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
   setAllMovies: () => void;
 }
 
-const MovieContext = createContext<ContextValue>({
+const MovieContext = createContext<MovieContextValue>({
   trendingMovies: [],
   recommendedMovies: [],
-  searchResults: [],
-  setSearchTerm: () => {},
   setAllMovies: () => {},
 });
 
-export default function MoviesProvider(props: PropsWithChildren<{}>) {
-  const [movies, setMovies] = useState<Movie[]>([]);
-  const [searchTerm, setSearchTerm] = useState("");
-
-  useEffect(() => {
-    setMovies(moviesData);
-  }, []);
-
-  const searchMovies = (term: string) => {
-    return movies.filter((movie) =>
-      movie.title.toLowerCase().includes(term.toLowerCase())
-    );
-  };
+export default function MovieProvider(props: PropsWithChildren<{}>) {
+  const [movies, setMovies] = useState<Movie[]>(moviesData);
 
   const getTrendingMovies = () => {
     return movies.filter((movie) => movie.isTrending);
@@ -64,25 +49,14 @@ export default function MoviesProvider(props: PropsWithChildren<{}>) {
   const [recommendedMovies, setRecommendedMovies] = useState<Movie[]>(
     getRecommendedMovies()
   );
-  const [searchResults, setSearchResults] = useState<Movie[]>([]);
 
   useEffect(() => {
-    if (searchTerm.trim() === "") {
-      setTrendingMovies(getTrendingMovies());
-      setRecommendedMovies(getRecommendedMovies());
-      setSearchResults([]);
-    } else {
-      const searchResult = searchMovies(searchTerm);
-      setSearchResults(searchResult);
-      setTrendingMovies(searchResult.filter((movie) => movie.isTrending));
-      setRecommendedMovies(searchResult.filter((movie) => !movie.isTrending));
-    }
-  }, [searchTerm, movies]);
+    setMovies(moviesData);
+  }, []);
 
   const setAllMovies = () => {
     setTrendingMovies(getTrendingMovies());
     setRecommendedMovies(getRecommendedMovies());
-    setSearchTerm("");
   };
 
   return (
@@ -90,8 +64,6 @@ export default function MoviesProvider(props: PropsWithChildren<{}>) {
       value={{
         trendingMovies,
         recommendedMovies,
-        searchResults,
-        setSearchTerm,
         setAllMovies,
       }}
     >
