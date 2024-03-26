@@ -23,12 +23,14 @@ interface ContextValue {
   trendingMovies: Movie[];
   recommendedMovies: Movie[];
   setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
+  setAllMovies: () => void; // Ny funktion för att återställa alla filmer
 }
 
 const MovieContext = createContext<ContextValue>({
   trendingMovies: [],
   recommendedMovies: [],
   setSearchTerm: () => {},
+  setAllMovies: () => {}, // Initieras som en tom funktion
 });
 
 export default function MoviesProvider(props: PropsWithChildren<{}>) {
@@ -71,9 +73,16 @@ export default function MoviesProvider(props: PropsWithChildren<{}>) {
     }
   }, [searchTerm, movies]);
 
+  // Funktion för att återställa alla filmer till ursprungstillståndet
+  const setAllMovies = () => {
+    setTrendingMovies(getTrendingMovies());
+    setRecommendedMovies(getRecommendedMovies());
+    setSearchTerm(""); // Nollställ söktermen
+  };
+
   return (
     <MovieContext.Provider
-      value={{ trendingMovies, recommendedMovies, setSearchTerm }}
+      value={{ trendingMovies, recommendedMovies, setSearchTerm, setAllMovies }}
     >
       {props.children}
     </MovieContext.Provider>
