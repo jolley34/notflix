@@ -1,5 +1,6 @@
 "use client";
-import {
+
+import React, {
   createContext,
   PropsWithChildren,
   useContext,
@@ -19,18 +20,20 @@ export interface Movie {
   isTrending?: boolean;
 }
 
-interface ContextValue {
+export interface ContextValue {
   trendingMovies: Movie[];
   recommendedMovies: Movie[];
+  searchResults: Movie[];
   setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
-  setAllMovies: () => void; // Ny funktion för att återställa alla filmer
+  setAllMovies: () => void;
 }
 
 const MovieContext = createContext<ContextValue>({
   trendingMovies: [],
   recommendedMovies: [],
+  searchResults: [],
   setSearchTerm: () => {},
-  setAllMovies: () => {}, // Initieras som en tom funktion
+  setAllMovies: () => {},
 });
 
 export default function MoviesProvider(props: PropsWithChildren<{}>) {
@@ -61,28 +64,36 @@ export default function MoviesProvider(props: PropsWithChildren<{}>) {
   const [recommendedMovies, setRecommendedMovies] = useState<Movie[]>(
     getRecommendedMovies()
   );
+  const [searchResults, setSearchResults] = useState<Movie[]>([]);
 
   useEffect(() => {
     if (searchTerm.trim() === "") {
       setTrendingMovies(getTrendingMovies());
       setRecommendedMovies(getRecommendedMovies());
+      setSearchResults([]);
     } else {
       const searchResult = searchMovies(searchTerm);
+      setSearchResults(searchResult);
       setTrendingMovies(searchResult.filter((movie) => movie.isTrending));
       setRecommendedMovies(searchResult.filter((movie) => !movie.isTrending));
     }
   }, [searchTerm, movies]);
 
-  // Funktion för att återställa alla filmer till ursprungstillståndet
   const setAllMovies = () => {
     setTrendingMovies(getTrendingMovies());
     setRecommendedMovies(getRecommendedMovies());
-    setSearchTerm(""); // Nollställ söktermen
+    setSearchTerm("");
   };
 
   return (
     <MovieContext.Provider
-      value={{ trendingMovies, recommendedMovies, setSearchTerm, setAllMovies }}
+      value={{
+        trendingMovies,
+        recommendedMovies,
+        searchResults,
+        setSearchTerm,
+        setAllMovies,
+      }}
     >
       {props.children}
     </MovieContext.Provider>

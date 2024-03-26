@@ -33,7 +33,7 @@ export default function SearchComponent() {
 
   useEffect(() => {
     if (!isOpen) {
-      setSearchTerm(""); // Återställ söktermen när sökfältet stängs
+      setSearchTerm("");
     }
   }, [isOpen]);
 
