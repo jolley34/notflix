@@ -38,31 +38,30 @@ const MovieContext = createContext<MovieContextValue>({
   toggleFavorite: () => {},
 });
 
-export default function MovieProvider({ children }: PropsWithChildren<{}>) {
+export default function MovieProvider(props: PropsWithChildren<{}>) {
   const [movies, setMovies] = useState<Movie[]>(moviesData);
-  const [favoriteMovies, setFavoriteMovies] = useState<Movie[]>([]);
-
-  useEffect(() => {
+  const [favoriteMovies, setFavoriteMovies] = useState<Movie[]>(() => {
     const savedFavorites = localStorage.getItem("favoriteMovies");
-    if (savedFavorites) {
-      setFavoriteMovies(JSON.parse(savedFavorites));
-    }
-  }, []);
+    return savedFavorites ? JSON.parse(savedFavorites) : [];
+  });
 
   useEffect(() => {
     localStorage.setItem("favoriteMovies", JSON.stringify(favoriteMovies));
   }, [favoriteMovies]);
 
   const toggleFavorite = (slug: string) => {
-    const isFavorite = favoriteMovies.some((movie) => movie.slug === slug);
-    if (isFavorite) {
-      setFavoriteMovies(favoriteMovies.filter((movie) => movie.slug !== slug));
-    } else {
-      const movieToAdd = movies.find((movie) => movie.slug === slug);
-      if (movieToAdd) {
-        setFavoriteMovies([...favoriteMovies, movieToAdd]);
+    setFavoriteMovies((prevFavorites) => {
+      const isFavorite = prevFavorites.some((movie) => movie.slug === slug);
+      if (isFavorite) {
+        return prevFavorites.filter((movie) => movie.slug !== slug);
+      } else {
+        const movieToAdd = movies.find((movie) => movie.slug === slug);
+        if (movieToAdd) {
+          return [...prevFavorites, movieToAdd];
+        }
       }
-    }
+      return prevFavorites;
+    });
   };
 
   return (
@@ -75,7 +74,7 @@ export default function MovieProvider({ children }: PropsWithChildren<{}>) {
         toggleFavorite,
       }}
     >
-      {children}
+      {props.children}
     </MovieContext.Provider>
   );
 }
