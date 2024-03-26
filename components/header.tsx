@@ -47,7 +47,9 @@ export default function Header() {
             <li>Serier</li>
             <li>Filmer</li>
             <li>Nytt och populärt</li>
-            <li>Min lista</li>
+            <Link href={"/mylist"}>
+              <li className="cursor-pointer">Min lista</li>
+            </Link>
             <li>Bläddra efter språk</li>
           </ul>
         </div>
