@@ -2,30 +2,12 @@
 
 import { Input } from "@/components/ui/input";
 import { useSearch } from "@/context/SearchContext";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 
 export default function SearchComponent() {
   const [isOpen, setIsOpen] = useState(false);
   const { searchTerm, setSearchTerm, searchResults } = useSearch();
   const inputRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        inputRef.current &&
-        !inputRef.current.contains(event.target as Node)
-      ) {
-        setIsOpen(false);
-        setSearchTerm("");
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [setIsOpen, setSearchTerm]);
 
   const toggleSearchInput = () => {
     setIsOpen(!isOpen);
