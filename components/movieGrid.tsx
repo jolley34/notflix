@@ -1,6 +1,7 @@
 "use client";
 import { useMovies } from "@/context/MovieContext";
 import { useSearch } from "@/context/SearchContext";
+import Link from "next/link";
 import { Card, CardContent } from "./ui/card";
 import {
   Carousel,
@@ -41,11 +42,13 @@ export default function MovieGrid() {
                       >
                         <Card className="p-0 border-0 cursor-pointer rounded-md">
                           <CardContent className="flex items-center justify-center p-0 h-56 ">
-                            <img
-                              className="object-cover w-full h-full transition-opacity duration-300 hover:opacity-95 ease-in-out rounded-md"
-                              src={movie.thumbnail}
-                              alt={movie.title}
-                            />
+                            <Link href={`/filmview/${movie.slug}`}>
+                              <img
+                                className="object-cover w-full h-full transition-opacity duration-300 hover:opacity-95 ease-in-out rounded-md"
+                                src={movie.thumbnail}
+                                alt={movie.title}
+                              />
+                            </Link>
                           </CardContent>
                         </Card>
                       </CarouselItem>
@@ -76,11 +79,13 @@ export default function MovieGrid() {
                       >
                         <Card className="p-0 border-0 cursor-pointer rounded-md">
                           <CardContent className="flex items-center justify-center p-0 h-56 overflow-hidden">
-                            <img
-                              className="object-cover w-full h-full transition-opacity duration-300 hover:opacity-95 ease-in-out rounded-md"
-                              src={movie.thumbnail}
-                              alt={movie.title}
-                            />
+                            <Link href={`/filmview/${movie.slug}`}>
+                              <img
+                                className="object-cover w-full h-full transition-opacity duration-300 hover:opacity-95 ease-in-out rounded-md"
+                                src={movie.thumbnail}
+                                alt={movie.title}
+                              />
+                            </Link>
                           </CardContent>
                         </Card>
                       </CarouselItem>
@@ -111,11 +116,13 @@ export default function MovieGrid() {
                       >
                         <Card className="p-0 border-0 cursor-pointer rounded-md">
                           <CardContent className="flex items-center justify-center p-0 h-64">
-                            <img
-                              className="object-cover w-full h-full transition-opacity duration-300 hover:opacity-95 ease-in-out rounded-md"
-                              src={movie.thumbnail}
-                              alt={movie.title}
-                            />
+                            <Link href={`/filmview/${movie.slug}`}>
+                              <img
+                                className="object-cover w-full h-full transition-opacity duration-300 hover:opacity-95 ease-in-out rounded-md"
+                                src={movie.thumbnail}
+                                alt={movie.title}
+                              />
+                            </Link>
                           </CardContent>
                         </Card>
                       </CarouselItem>

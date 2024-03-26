@@ -18,6 +18,7 @@ export interface Movie {
   synopsis: string;
   thumbnail: string;
   isTrending?: boolean;
+  slug: string;
 }
 
 interface SearchContextValue {
