@@ -26,7 +26,7 @@ export default function MovieGrid() {
           <>
             {!searchTerm && trendingMovies.length > 0 && (
               <section className="flex flex-col gap-4 -translate-y-1/2 ">
-                <h2 className="title text-xl font-bold tracking-tight lg:text-2xl">
+                <h2 className="title text-xl font-medium tracking-tight lg:text-2xl">
                   Trendar just nu
                 </h2>
                 <Carousel
@@ -70,7 +70,7 @@ export default function MovieGrid() {
 
             {!searchTerm && recommendedMovies.length > 0 && (
               <section className="flex flex-col gap-4 -translate-y-1/3">
-                <h2 className="title text-xl font-bold tracking-tight lg:text-2xl">
+                <h2 className="title text-xl font-medium tracking-tight lg:text-2xl">
                   Rekommenderat för dig
                 </h2>
                 <Carousel
@@ -113,7 +113,7 @@ export default function MovieGrid() {
 
             {searchResults.length > 0 && (
               <section className="flex flex-col gap-4 ">
-                <h2 className="title text-xl font-bold tracking-tight lg:text-2xl">
+                <h2 className="title text-xl font-medium tracking-tight lg:text-2xl">
                   Sökresultat
                 </h2>
                 <Carousel
