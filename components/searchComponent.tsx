@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from "react";
 export default function SearchComponent() {
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const inputRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
   const { setSearchTerm: setMoviesSearchTerm } = useMovies();
 
   const toggleSearchInput = () => {
@@ -22,6 +22,12 @@ export default function SearchComponent() {
 
   const handleSearch = () => {
     setMoviesSearchTerm(searchTerm.trim());
+  };
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      handleSearch();
+    }
   };
 
   useEffect(() => {
@@ -49,6 +55,7 @@ export default function SearchComponent() {
             placeholder="Titlar, filmer, serier"
             value={searchTerm}
             onChange={handleSearchInputChange}
+            onKeyDown={handleKeyDown} // Lägg till keydown-händelsehanterare
           />
           <button
             className="ml-2 bg-red-600 text-white px-3 py-1 rounded"
