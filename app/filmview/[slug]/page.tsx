@@ -1,9 +1,6 @@
 "use client";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import IconButton from "@mui/material/IconButton";
-import { useState } from "react";
 
+import FavoriteButton from "@/components/favoriteButton";
 import { Button } from "@/components/ui/button";
 import { useMovies } from "../../../context/MovieContext";
 
@@ -12,12 +9,6 @@ type PageProps = { params: { slug: string } };
 export default function FilmView({ params }: PageProps) {
   const { movies } = useMovies();
   const movie = movies.find((m) => m.slug === params.slug);
-
-  const [isFavorite, setIsFavorite] = useState(false);
-
-  const toggleFavorite = () => {
-    setIsFavorite(!isFavorite);
-  };
 
   if (!movie) {
     return <div>Filmen kunde inte hittas.</div>;
@@ -39,13 +30,7 @@ export default function FilmView({ params }: PageProps) {
           <div className="flex flex-col gap-2">
             <div className="flex align-middle justify-between">
               <h1 className="font-bold text-4xl">{movie.title}</h1>
-              <IconButton onClick={toggleFavorite} color="inherit">
-                {isFavorite ? (
-                  <FavoriteIcon fontSize="medium" />
-                ) : (
-                  <FavoriteBorderIcon fontSize="medium" />
-                )}
-              </IconButton>
+              <FavoriteButton slug={movie.slug} />
             </div>
             <p className="font-thin ">Release : {movie.year}</p>
             <p className="font-thin ">Genre : {movie.genre}</p>

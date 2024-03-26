@@ -2,6 +2,7 @@
 import { useMovies } from "@/context/MovieContext";
 import { useSearch } from "@/context/SearchContext";
 import Link from "next/link";
+import FavoriteButton from "./favoriteButton";
 import { Card, CardContent } from "./ui/card";
 import {
   Carousel,
@@ -19,7 +20,7 @@ export default function MovieGrid() {
   const isNoResults = searchResults.length === 0 && !isSearchEmpty;
 
   return (
-    <div className="w-full px-20 z-20 ">
+    <div className="w-full px-14 z-20 ">
       <div className="flex flex-col ">
         {!isNoResults && (
           <>
@@ -47,16 +48,20 @@ export default function MovieGrid() {
                               as={`/filmview/${movie.slug}`}
                             >
                               <img
-                                className="object-cover w-full h-full transition-opacity duration-300 hover:opacity-95 ease-in-out "
+                                className="object-cover w-full h-full "
                                 src={movie.thumbnail}
                                 alt={movie.title}
                               />
                             </Link>
                           </CardContent>
+                          <div className="relative p-2 text-white bg-zinc-900 ">
+                            <FavoriteButton slug={movie.slug} />
+                          </div>
                         </Card>
                       </CarouselItem>
                     ))}
                   </CarouselContent>
+
                   <CarouselPrevious className="absolute top-1/2 left-2 transform -translate-y-1/2" />
                   <CarouselNext className="absolute top-1/2 right-2 transform -translate-y-1/2" />
                 </Carousel>
@@ -87,12 +92,15 @@ export default function MovieGrid() {
                               as={`/filmview/${movie.slug}`}
                             >
                               <img
-                                className="object-cover w-full h-full transition-opacity duration-300 hover:opacity-95 ease-in-out "
+                                className="object-cover w-full h-full "
                                 src={movie.thumbnail}
                                 alt={movie.title}
                               />
                             </Link>
                           </CardContent>
+                          <div className="relative p-2 text-white bg-zinc-900 ">
+                            <FavoriteButton slug={movie.slug} />
+                          </div>
                         </Card>
                       </CarouselItem>
                     ))}
@@ -120,19 +128,22 @@ export default function MovieGrid() {
                         key={index}
                         className="sm:basis-1/2 md:basis-1/4 lg:basis-1/4"
                       >
-                        <Card className="p-0 border-0 cursor-pointer ">
+                        <Card className="p-0 border-0 cursor-pointer">
                           <CardContent className="flex items-center justify-center p-0 h-64">
                             <Link
                               href={`/filmview/${movie.slug}`}
                               as={`/filmview/${movie.slug}`}
                             >
                               <img
-                                className="object-cover w-full h-full transition-opacity duration-300 hover:opacity-95 ease-in-out "
+                                className="object-cover w-full h-full  "
                                 src={movie.thumbnail}
                                 alt={movie.title}
                               />
                             </Link>
                           </CardContent>
+                          <div className="relative p-2 text-white bg-zinc-900 ">
+                            <FavoriteButton slug={movie.slug} />
+                          </div>
                         </Card>
                       </CarouselItem>
                     ))}

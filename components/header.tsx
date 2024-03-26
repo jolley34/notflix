@@ -27,7 +27,7 @@ export default function Header() {
   return (
     <>
       <header
-        className={`header z-50 fixed px-20 py-4 flex justify-between flex-wrap w-full ${
+        className={`header z-50 fixed px-14 py-4 flex justify-between flex-wrap w-full ${
           scrolling
             ? "bg-secondary-foreground transition-colors duration-700"
             : "bg-transparent transition-colors duration-700"
@@ -47,7 +47,9 @@ export default function Header() {
             <li>Serier</li>
             <li>Filmer</li>
             <li>Nytt och populärt</li>
-            <li>Min lista</li>
+            <Link href={"/mylist"}>
+              <li className="cursor-pointer">Min lista</li>
+            </Link>
             <li>Bläddra efter språk</li>
           </ul>
         </div>
