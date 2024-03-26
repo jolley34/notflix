@@ -10,13 +10,15 @@ export default function SearchComponent() {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const toggleSearchInput = () => {
+    if (isOpen) {
+      setSearchTerm("");
+    }
     setIsOpen(!isOpen);
     if (
       !isOpen &&
       inputRef.current &&
       inputRef.current instanceof HTMLInputElement
     ) {
-      setSearchTerm("");
       inputRef.current.focus();
       const inputLength = inputRef.current.value
         ? inputRef.current.value.length
