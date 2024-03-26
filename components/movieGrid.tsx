@@ -1,5 +1,4 @@
 "use client";
-
 import { useMovies } from "@/context/MovieContext";
 import { Card, CardContent } from "./ui/card";
 import {
@@ -14,13 +13,18 @@ export default function MovieGrid() {
   const { trendingMovies, recommendedMovies } = useMovies();
 
   return (
-    <div className="absolute w-full px-20 z-20 -translate-y-1/4">
-      <div className="flex flex-col gap-12 ">
-        <section>
+    <div className="w-full px-20 z-20 ">
+      <div className="flex flex-col ">
+        <section className="flex flex-col gap-4 -translate-y-1/2">
           <h2 className="title text-xl font-bold tracking-tight lg:text-2xl">
             Trendar just nu
           </h2>
-          <Carousel>
+          <Carousel
+            opts={{
+              align: "start",
+              slidesToScroll: 1,
+            }}
+          >
             <CarouselContent>
               {trendingMovies.map((movie, index) => (
                 <CarouselItem
@@ -43,11 +47,16 @@ export default function MovieGrid() {
             <CarouselNext className="absolute top-1/2 right-2 transform -translate-y-1/2" />
           </Carousel>
         </section>
-        <section>
+        <section className="flex flex-col gap-4 -translate-y-1/3">
           <h2 className="title text-xl font-bold tracking-tight lg:text-2xl">
             Rekommenderat för dig
           </h2>
-          <Carousel>
+          <Carousel
+            opts={{
+              align: "start",
+              slidesToScroll: 1,
+            }}
+          >
             <CarouselContent>
               {recommendedMovies.map((movie, index) => (
                 <CarouselItem
