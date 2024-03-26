@@ -18,8 +18,8 @@ export default function MovieGrid() {
   const isNoResults = searchResults.length === 0 && !isSearchEmpty;
 
   return (
-    <div className="w-full px-20 z-20">
-      <div className="flex flex-col">
+    <div className="w-full px-20 z-20 ">
+      <div className="flex flex-col ">
         {!isNoResults && (
           <>
             {!searchTerm && trendingMovies.length > 0 && (
@@ -93,7 +93,7 @@ export default function MovieGrid() {
             )}
 
             {searchResults.length > 0 && (
-              <section className="flex flex-col gap-4 -translate-y-1/2">
+              <section className="flex flex-col gap-4 ">
                 <h2 className="title text-xl font-bold tracking-tight lg:text-2xl">
                   Sökresultat
                 </h2>
