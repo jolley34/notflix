@@ -11,6 +11,12 @@ export default function VideoComponent() {
         muted
         loop
       ></video>
+      <img
+        src="/StrangerThings_logo.svg"
+        alt="Stranger Things Logo"
+        className="absolute top-1/3 left-20 transform -translate-y-1/2"
+        style={{ maxWidth: "30%", maxHeight: "30%", opacity: 0.7 }}
+      />
       <div
         className="absolute inset-x-0 bottom-0 h-52"
         style={{
