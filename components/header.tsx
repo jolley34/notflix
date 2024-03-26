@@ -2,11 +2,13 @@
 
 import Link from "next/link";
 
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import SearchComponent from "./searchComponent";
 
 export default function Header() {
   const [scrolling, setScrolling] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -55,7 +57,9 @@ export default function Header() {
         </div>
         <div className="flex flex-wrap">
           <ul className="second-navbar flex gap-4 lg:text-sm items-center">
-            <SearchComponent />
+            {!pathname.startsWith("/filmview" && "/mylist") && (
+              <SearchComponent />
+            )}
             <li>Barn</li>
             <li>
               <svg
