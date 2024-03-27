@@ -54,7 +54,7 @@ export default function MovieGrid() {
                   <Carousel
                     opts={{
                       align: "start",
-                      slidesToScroll: 1,
+                      slidesToScroll: 6,
                     }}
                   >
                     <CarouselContent>
@@ -98,7 +98,7 @@ export default function MovieGrid() {
                   <Carousel
                     opts={{
                       align: "start",
-                      slidesToScroll: 1,
+                      slidesToScroll: 6,
                     }}
                   >
                     <CarouselContent>
