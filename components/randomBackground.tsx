@@ -7,23 +7,33 @@ const randomFrames = [
   {
     series: "StrangerThings",
     images: [
-      "/image-1.jpeg",
-      "/image-2.png",
-      "/image-3.png",
-      "/image-4.png",
-      "/image-5.png",
+      "/image-1-st.jpeg",
+      "/image-2-st.png",
+      "/image-3-st.png",
+      "/image-4-st.png",
+      "/image-5-st.png",
+      "/image-6-st.png",
+      "/image-7-st.png",
+      "/image-8-st.png",
+      "/image-9-st.png",
+      "/image-10-st.png",
     ],
     logo: "/StrangerThings_logo.svg",
-    trailerSrc: "/frontpage-video-v2.mp4",
+    trailerSrc: "/stranger-things-trailer.mp4",
   },
   {
     series: "Ozark",
     images: [
-      "/image-6.png",
-      "/image-7.png",
-      "/image-8.png",
-      "/image-9.png",
-      "/image-10.png",
+      "/image-1-oz.png",
+      "/image-2-oz.png",
+      "/image-3-oz.png",
+      "/image-4-oz.png",
+      "/image-5-oz.png",
+      "/image-6-oz.png",
+      "/image-7-oz.png",
+      "/image-8-oz.png",
+      "/image-9-oz.png",
+      "/image-10-oz.png",
     ],
     logo: "/ozark-logo.svg",
     trailerSrc: "/ozark-trailer.mp4",
@@ -35,14 +45,14 @@ export default function RandomBackground() {
     Math.floor(Math.random() * randomFrames.length)
   );
   const [currentImageIndex, setCurrentImageIndex] = useState(
-    Math.floor(Math.random() * 5)
+    Math.floor(Math.random() * 10)
   );
   const [playingTrailer, setPlayingTrailer] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
       if (!playingTrailer) {
-        setCurrentImageIndex(Math.floor(Math.random() * 5));
+        setCurrentImageIndex(Math.floor(Math.random() * 10));
         setCurrentFrameIndex(Math.floor(Math.random() * randomFrames.length));
       }
     }, 20000);
