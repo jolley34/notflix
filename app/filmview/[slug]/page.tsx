@@ -38,7 +38,9 @@ export default function FilmView({ params }: PageProps) {
             className="absolute bottom-16 left-6"
             onClick={toggleMute}
           >
-            {muted ? <VolumeOffIcon /> : <VolumeUpIcon />}
+            <div className="text-white opacity-30">
+              {muted ? <VolumeOffIcon /> : <VolumeUpIcon />}
+            </div>
           </IconButton>
         </section>
         <section className="w-full h-screen flex items-center justify-center p-20">
