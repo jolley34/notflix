@@ -82,7 +82,7 @@ export default function RandomBackground() {
           />
         ))
       )}
-      <div className="absolute px-16 flex justify-center items-center top-1/3 -translate-y-1/2">
+      <div className="absolute px-16 flex justify-center items-center top-1/2 -translate-y-1/2">
         <div className="flex flex-col gap-4 items-left">
           <img
             key={currentLogo}
