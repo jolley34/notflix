@@ -13,7 +13,7 @@ type PageProps = { params: { slug: string } };
 export default function FilmView({ params }: PageProps) {
   const { movies } = useMovies();
   const movie = movies.find((m) => m.slug === params.slug);
-  const [muted, setMuted] = useState(true);
+  const [muted, setMuted] = useState(false);
 
   const toggleMute = () => {
     setMuted((prevMuted) => !prevMuted);
