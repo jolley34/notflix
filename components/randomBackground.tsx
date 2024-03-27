@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 
 const randomFrames = [
@@ -43,7 +44,7 @@ export default function RandomBackground() {
   const currentLogo = currentFrame.logo;
 
   return (
-    <div className="relative h-screen w-screen overflow-hidden">
+    <div className="relative h-screen w-screen">
       {randomFrames.map((frame, index) => (
         <img
           key={index}
@@ -55,22 +56,29 @@ export default function RandomBackground() {
           }}
         />
       ))}
-
-      <img
-        key={currentLogo}
-        src={currentLogo}
-        alt="Random Logo"
-        className="absolute top-1/3 left-14 transform -translate-y-1/2 transition-opacity duration-1000"
-        style={{
-          maxWidth: "20%",
-          maxHeight: "20%",
-          opacity: 0.7,
-          filter:
-            currentFrame.series === "Ozark"
-              ? "brightness(0) invert(1)"
-              : "none",
-        }}
-      />
+      <div className="absolute px-16 flex justify-center items-center top-1/2 -translate-y-1/2">
+        <div className="flex flex-col gap-4 items-left">
+          <img
+            key={currentLogo}
+            src={currentLogo}
+            alt="Random Logo"
+            className="transition-opacity duration-1000"
+            style={{
+              width: "400px",
+              height: "auto",
+              opacity: 0.7,
+              filter:
+                currentFrame.series === "Ozark"
+                  ? "brightness(0) invert(1)"
+                  : "none",
+            }}
+          />
+          <div className="flex align-middle gap-2">
+            <Button>Spela Trailer</Button>
+            <Button variant="secondary">Mer Info</Button>
+          </div>
+        </div>
+      </div>
 
       <div
         className="absolute inset-x-0 bottom-0 h-52"
