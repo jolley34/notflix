@@ -54,7 +54,7 @@ export default function FilmView({ params }: PageProps) {
         <section className="w-full h-screen flex items-center justify-center p-20">
           <div className="flex flex-col gap-2">
             <div className="flex align-middle justify-between">
-              <h1 className="font-bold text-4xl">{movie.title}</h1>
+              <h1 className="font-bold text-4xl w-3/4">{movie.title}</h1>
               <FavoriteButton slug={movie.slug} />
             </div>
             <p className="font-thin ">Release : {movie.year}</p>
