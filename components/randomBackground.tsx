@@ -14,6 +14,7 @@ const randomFrames = [
       "/image-5.png",
     ],
     logo: "/StrangerThings_logo.svg",
+    trailerSrc: "/frontpage-video-v2.mp4",
   },
   {
     series: "Ozark",
@@ -25,37 +26,58 @@ const randomFrames = [
       "/image-10.png",
     ],
     logo: "/ozark-logo.svg",
+    trailerSrc: "/ozark-trailer.mp4",
   },
 ];
 
 export default function RandomBackground() {
   const [currentFrameIndex, setCurrentFrameIndex] = useState(0);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [playingTrailer, setPlayingTrailer] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % 5);
-      setCurrentFrameIndex((prevIndex) => (prevIndex + 1) % 2);
+      if (!playingTrailer) {
+        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % 5);
+        setCurrentFrameIndex((prevIndex) => (prevIndex + 1) % 2);
+      }
     }, 20000);
     return () => clearInterval(interval);
-  }, []);
+  }, [playingTrailer]);
 
   const currentFrame = randomFrames[currentFrameIndex];
   const currentLogo = currentFrame.logo;
 
+  const playTrailer = () => {
+    setPlayingTrailer(true);
+  };
+
+  const endTrailer = () => {
+    setPlayingTrailer(false);
+  };
+
   return (
     <div className="relative h-screen w-screen">
-      {randomFrames.map((frame, index) => (
-        <img
-          key={index}
-          src={frame.images[currentImageIndex]}
-          alt="Random Frame"
-          className="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000"
-          style={{
-            opacity: index === currentFrameIndex ? 1 : 0,
-          }}
+      {playingTrailer ? (
+        <video
+          src={currentFrame.trailerSrc}
+          autoPlay
+          className="absolute top-0 left-0 w-full h-full object-cover"
+          onEnded={endTrailer}
         />
-      ))}
+      ) : (
+        randomFrames.map((frame, index) => (
+          <img
+            key={index}
+            src={frame.images[currentImageIndex]}
+            alt="Random Frame"
+            className="absolute top-0 left-0 w-screen h-screen object-cover transition-opacity duration-1000"
+            style={{
+              opacity: index === currentFrameIndex ? 1 : 0,
+            }}
+          />
+        ))
+      )}
       <div className="absolute px-16 flex justify-center items-center top-1/3 -translate-y-1/2">
         <div className="flex flex-col gap-4 items-left">
           <img
@@ -73,12 +95,14 @@ export default function RandomBackground() {
                   : "none",
             }}
           />
-          <div className="flex align-middle gap-2">
-            <Button size={"lg"}>Spela Trailer</Button>
-            <Button size={"lg"} variant="secondary">
-              Mer Info
+          {!playingTrailer && (
+            <Button size={"lg"} onClick={playTrailer}>
+              Spela Trailer
             </Button>
-          </div>
+          )}
+          <Button size={"lg"} variant="secondary">
+            Mer Info
+          </Button>
         </div>
       </div>
 
