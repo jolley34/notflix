@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className="bg-secondary-foreground p-16 w-full bottom-0 ">
+    <footer className="bg-secondary-foreground p-16 w-full bottom-0 border-t-2 border-zinc-800">
       <div className="flex justify-between items-center">
         <div className="flex gap-2 items-center">
           <h1>Notflix ™</h1>

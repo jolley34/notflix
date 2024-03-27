@@ -56,7 +56,7 @@ export default function RandomBackground() {
           }}
         />
       ))}
-      <div className="absolute px-16 flex justify-center items-center top-1/2 -translate-y-1/2">
+      <div className="absolute px-16 flex justify-center items-center top-1/3 -translate-y-1/2">
         <div className="flex flex-col gap-4 items-left">
           <img
             key={currentLogo}
@@ -74,8 +74,10 @@ export default function RandomBackground() {
             }}
           />
           <div className="flex align-middle gap-2">
-            <Button>Spela Trailer</Button>
-            <Button variant="secondary">Mer Info</Button>
+            <Button size={"lg"}>Spela Trailer</Button>
+            <Button size={"lg"} variant="secondary">
+              Mer Info
+            </Button>
           </div>
         </div>
       </div>
