@@ -3,6 +3,7 @@ import { useMovies } from "@/context/MovieContext";
 import { useSearch } from "@/context/SearchContext";
 import Link from "next/link";
 import FavoriteButton from "./favoriteButton";
+import RandomBackground from "./randomBackground";
 import { Card, CardContent } from "./ui/card";
 import {
   Carousel,
@@ -11,7 +12,6 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "./ui/carousel";
-import VideoComponent from "./videoComponent";
 
 export default function MovieGrid() {
   const { trendingMovies, recommendedMovies } = useMovies();
@@ -23,7 +23,7 @@ export default function MovieGrid() {
 
   return (
     <div>
-      {!isNoResults && !isSearching && <VideoComponent />}
+      {!isNoResults && !isSearching && <RandomBackground />}
       <div
         className={`${
           isSearching || isNoResults ? "px-14 z-20" : "w-full px-14 z-20"
