@@ -4,6 +4,8 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Card, CardContent } from "@mui/material";
 import Link from "next/link";
@@ -51,6 +53,8 @@ export default function MyList() {
               </CarouselItem>
             ))}
           </CarouselContent>
+          <CarouselPrevious className="absolute top-1/2 left-2 transform -translate-y-1/2" />
+          <CarouselNext className="absolute top-1/2 right-2 transform -translate-y-1/2" />
         </div>
       </Carousel>
     </div>
