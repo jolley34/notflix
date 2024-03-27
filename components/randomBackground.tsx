@@ -31,15 +31,19 @@ const randomFrames = [
 ];
 
 export default function RandomBackground() {
-  const [currentFrameIndex, setCurrentFrameIndex] = useState(0);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [currentFrameIndex, setCurrentFrameIndex] = useState(
+    Math.floor(Math.random() * randomFrames.length)
+  );
+  const [currentImageIndex, setCurrentImageIndex] = useState(
+    Math.floor(Math.random() * 5)
+  );
   const [playingTrailer, setPlayingTrailer] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
       if (!playingTrailer) {
-        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % 5);
-        setCurrentFrameIndex((prevIndex) => (prevIndex + 1) % 2);
+        setCurrentImageIndex(Math.floor(Math.random() * 5));
+        setCurrentFrameIndex(Math.floor(Math.random() * randomFrames.length));
       }
     }, 20000);
     return () => clearInterval(interval);
