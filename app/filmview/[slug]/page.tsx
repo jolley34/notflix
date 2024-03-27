@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import VolumeOffIcon from "@mui/icons-material/VolumeOff";
 import VolumeUpIcon from "@mui/icons-material/VolumeUp";
 import { IconButton } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useMovies } from "../../../context/MovieContext";
 
 type PageProps = { params: { slug: string } };
@@ -14,10 +14,17 @@ export default function FilmView({ params }: PageProps) {
   const { movies } = useMovies();
   const movie = movies.find((m) => m.slug === params.slug);
   const [muted, setMuted] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   const toggleMute = () => {
     setMuted((prevMuted) => !prevMuted);
   };
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.volume = muted ? 0 : 0.25;
+    }
+  }, [muted]);
 
   if (!movie) {
     return <div>Filmen kunde inte hittas.</div>;
@@ -28,6 +35,7 @@ export default function FilmView({ params }: PageProps) {
       <div className="flex w-full h-full relative">
         <section className="w-full h-screen bg-zinc-700">
           <video
+            ref={videoRef}
             className="w-screen h-screen object-cover"
             src={movie.video}
             autoPlay
