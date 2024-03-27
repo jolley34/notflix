@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
 const randomFrames = [
   {
     series: "StrangerThings",
@@ -26,39 +28,49 @@ const randomFrames = [
 ];
 
 export default function RandomBackground() {
-  const randomIndex = Math.floor(Math.random() * randomFrames.length);
-  const randomFrame = randomFrames[randomIndex];
-  const randomImageIndex = Math.floor(
-    Math.random() * randomFrame.images.length
-  );
-  const randomImage = randomFrame.images[randomImageIndex];
-  const randomLogo = randomFrame.logo;
+  const [currentFrameIndex, setCurrentFrameIndex] = useState(0);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % 5);
+      setCurrentFrameIndex((prevIndex) => (prevIndex + 1) % 2);
+    }, 20000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const currentFrame = randomFrames[currentFrameIndex];
+  const currentLogo = currentFrame.logo;
 
   return (
     <div className="relative h-screen w-screen overflow-hidden">
-      {randomFrame && (
-        <>
-          <img
-            src={randomImage}
-            alt="Random Frame"
-            className="w-screen h-screen object-cover"
-          />
-          <img
-            src={randomLogo}
-            alt="Random Logo"
-            className="absolute top-1/3 left-14 transform -translate-y-1/2"
-            style={{
-              maxWidth: "20%",
-              maxHeight: "20%",
-              opacity: 0.7,
-              filter:
-                randomFrame.series === "Ozark"
-                  ? "brightness(0) invert(1)"
-                  : "none",
-            }}
-          />
-        </>
-      )}
+      {randomFrames.map((frame, index) => (
+        <img
+          key={index}
+          src={frame.images[currentImageIndex]}
+          alt="Random Frame"
+          className="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000"
+          style={{
+            opacity: index === currentFrameIndex ? 1 : 0,
+          }}
+        />
+      ))}
+
+      <img
+        key={currentLogo}
+        src={currentLogo}
+        alt="Random Logo"
+        className="absolute top-1/3 left-14 transform -translate-y-1/2 transition-opacity duration-1000"
+        style={{
+          maxWidth: "20%",
+          maxHeight: "20%",
+          opacity: 0.7,
+          filter:
+            currentFrame.series === "Ozark"
+              ? "brightness(0) invert(1)"
+              : "none",
+        }}
+      />
 
       <div
         className="absolute inset-x-0 bottom-0 h-52"
