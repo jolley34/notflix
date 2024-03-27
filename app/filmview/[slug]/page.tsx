@@ -2,6 +2,10 @@
 
 import FavoriteButton from "@/components/favoriteButton";
 import { Button } from "@/components/ui/button";
+import VolumeOffIcon from "@mui/icons-material/VolumeOff";
+import VolumeUpIcon from "@mui/icons-material/VolumeUp";
+import { IconButton } from "@mui/material";
+import { useState } from "react";
 import { useMovies } from "../../../context/MovieContext";
 
 type PageProps = { params: { slug: string } };
@@ -9,6 +13,11 @@ type PageProps = { params: { slug: string } };
 export default function FilmView({ params }: PageProps) {
   const { movies } = useMovies();
   const movie = movies.find((m) => m.slug === params.slug);
+  const [muted, setMuted] = useState(true);
+
+  const toggleMute = () => {
+    setMuted((prevMuted) => !prevMuted);
+  };
 
   if (!movie) {
     return <div>Filmen kunde inte hittas.</div>;
@@ -16,15 +25,21 @@ export default function FilmView({ params }: PageProps) {
 
   return (
     <div className="flex justify-center">
-      <div className="flex w-full">
+      <div className="flex w-full h-full relative">
         <section className="w-full h-screen bg-zinc-700">
           <video
-            className="w-full h-screen object-cover"
+            className="w-screen h-screen object-cover"
             src={movie.video}
             autoPlay
-            muted
+            muted={muted}
             loop
           ></video>
+          <IconButton
+            className="absolute bottom-16 left-6"
+            onClick={toggleMute}
+          >
+            {muted ? <VolumeOffIcon /> : <VolumeUpIcon />}
+          </IconButton>
         </section>
         <section className="w-full h-screen flex items-center justify-center p-20">
           <div className="flex flex-col gap-2">
