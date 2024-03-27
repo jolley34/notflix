@@ -54,17 +54,17 @@ export default function MovieGrid() {
                   <Carousel
                     opts={{
                       align: "start",
-                      slidesToScroll: 6,
+                      slidesToScroll: 4,
                     }}
                   >
-                    <CarouselContent>
+                    <CarouselContent className="w-full h-56">
                       {trendingMovies.map((movie, index) => (
                         <CarouselItem
                           key={index}
-                          className="sm:basis-1/2 md:basis-1/4 lg:basis-1/6 w-full"
+                          className="sm:basis-1/2 md:basis-1/4 lg:basis-1/4"
                         >
-                          <Card className="p-0 border-0 cursor-pointer ">
-                            <CardContent className="flex items-center justify-center p-0 h-56 ">
+                          <Card className="p-0 border-0 cursor-pointer">
+                            <CardContent className="p-0">
                               <Link
                                 href={`/filmview/${movie.slug}`}
                                 as={`/filmview/${movie.slug}`}
@@ -76,14 +76,13 @@ export default function MovieGrid() {
                                 />
                               </Link>
                             </CardContent>
-                            <div className="relative p-2 text-white bg-zinc-900 ">
-                              <FavoriteButton slug={movie.slug} />
-                            </div>
                           </Card>
+                          <div className="sticky bottom-0 w-full p-4 text-white bg-zinc-900">
+                            <FavoriteButton slug={movie.slug} />
+                          </div>
                         </CarouselItem>
                       ))}
                     </CarouselContent>
-
                     <CarouselPrevious className="absolute top-1/2 left-2 transform -translate-y-1/2" />
                     <CarouselNext className="absolute top-1/2 right-2 transform -translate-y-1/2" />
                   </Carousel>
@@ -98,17 +97,17 @@ export default function MovieGrid() {
                   <Carousel
                     opts={{
                       align: "start",
-                      slidesToScroll: 6,
+                      slidesToScroll: 4,
                     }}
                   >
-                    <CarouselContent>
+                    <CarouselContent className="w-full h-56">
                       {recommendedMovies.map((movie, index) => (
                         <CarouselItem
                           key={index}
-                          className="sm:basis-1/2 md:basis-1/4 lg:basis-1/6 w-full"
+                          className="sm:basis-1/2 md:basis-1/4 lg:basis-1/4 "
                         >
-                          <Card className="p-0 border-0 cursor-pointer ">
-                            <CardContent className="flex items-center justify-center p-0 h-56 overflow-hidden ">
+                          <Card className="p-0 border-0 cursor-pointer">
+                            <CardContent className="p-0">
                               <Link
                                 href={`/filmview/${movie.slug}`}
                                 as={`/filmview/${movie.slug}`}
@@ -120,10 +119,10 @@ export default function MovieGrid() {
                                 />
                               </Link>
                             </CardContent>
-                            <div className="relative p-2 text-white bg-zinc-900 ">
-                              <FavoriteButton slug={movie.slug} />
-                            </div>
                           </Card>
+                          <div className="sticky bottom-0 w-full p-4 text-white bg-zinc-900 ">
+                            <FavoriteButton slug={movie.slug} />
+                          </div>
                         </CarouselItem>
                       ))}
                     </CarouselContent>
@@ -141,7 +140,7 @@ export default function MovieGrid() {
                   <Carousel
                     opts={{
                       align: "start",
-                      slidesToScroll: 1,
+                      slidesToScroll: 2,
                     }}
                   >
                     <CarouselContent>
@@ -157,7 +156,7 @@ export default function MovieGrid() {
                                 as={`/filmview/${movie.slug}`}
                               >
                                 <img
-                                  className="object-cover w-full h-full  "
+                                  className="object-cover w-full h-full"
                                   src={movie.thumbnail}
                                   alt={movie.title}
                                 />

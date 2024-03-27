@@ -51,7 +51,7 @@
     "actors": ["Henry Fonda", "Lee J. Cobb", "Martin Balsam"],
     "genre": "Crime, Drama",
     "synopsis": "The jury in a New York City murder trial is frustrated by a single member whose skeptical caution forces them to more carefully consider the evidence before jumping to a hasty verdict.",
-    "thumbnail": "https://m.media-amazon.com/images/M/MV5BMWU4N2FjNzYtNTVkNC00NzQ0LTg0MjAtYTJlMjFhNGUxZDFmXkEyXkFqcGdeQXVyNjc1NTYyMjg@._V1_SY1000_CR0,0,675,1000_AL_.jpg",
+    "thumbnail": "https://mir-s3-cdn-cf.behance.net/project_modules/hd/e6520b78339627.5ca24af435882.png",
     "slug": "12_angry_men",
     "video": "https://www.dropbox.com/scl/fi/0oweiox21n91ylw1v8rqm/12ANGRYMEN1957_OfficialTrailer_MGM-ezgif.com-crop-video.mp4?rlkey=3t7akm2rod2q6luydy70q6vwi&raw=1"
   },
@@ -62,7 +62,7 @@
     "actors": ["Liam Neeson", "Ralph Fiennes", "Ben Kingsley"],
     "genre": "Biography, Drama, History",
     "synopsis": "In German-occupied Poland during World War II, industrialist Oskar Schindler gradually becomes concerned for his Jewish workforce after witnessing their persecution by the Nazis.",
-    "thumbnail": "https://m.media-amazon.com/images/M/MV5BNDE4OTMxMTctNmRhYy00NWE2LTg3YzItYTk3M2UwOTU5Njg4XkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SY1000_CR0,0,675,1000_AL_.jpg",
+    "thumbnail": "https://image.tmdb.org/t/p/original/sF1U4EUQS8YHUYjNl3pMGNIQyr0.jpg",
     "slug": "schindlers_list",
     "video": "https://www.dropbox.com/scl/fi/2rm9kqou794thfqozgtkh/SchindlersList1993OfficialTrailer-LiamNeesonStevenSpielbergMovieHD-ezgif.com-video-cutter.mp4?rlkey=6xsv75kluig0aq57ag7j9uf8n&raw=1"
   },
@@ -152,7 +152,7 @@
     "actors": ["Mark Hamill", "Harrison Ford", "Carrie Fisher"],
     "genre": "Action, Adventure, Fantasy",
     "synopsis": "After the Rebels are overpowered by the Empire, Luke Skywalker begins his Jedi training with Yoda, while his friends are pursued across the galaxy by Darth Vader and bounty hunter Boba Fett.",
-    "thumbnail": "https://m.media-amazon.com/images/M/MV5BYmU1NDRjNDgtMzhiMi00NjZmLTg5NGItZDNiZjU5NTU4OTE0XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SY1000_CR0,0,675,1000_AL_.jpg",
+    "thumbnail": "https://images-na.ssl-images-amazon.com/images/I/91mJqQ3gyhL._RI_.jpg",
     "isTrending": true,
     "slug": "star_wars_episode_v_the_empire_strikes_back",
     "video": "https://www.dropbox.com/scl/fi/garxyglmnsef8kotewmn6/StarWarsEpisodeV_TheEmpireStrikesBack-Trailer-ezgif.com-crop-video.mp4?rlkey=afx8215dlzuzjkmo9m2sd8dil&raw=1"
@@ -164,7 +164,7 @@
     "actors": ["Keanu Reeves", "Laurence Fishburne", "Carrie-Anne Moss"],
     "genre": "Action, Sci-Fi",
     "synopsis": "When a beautiful stranger leads computer hacker Neo to a forbidding underworld, he discovers the shocking truth--the life he knows is the elaborate deception of an evil cyber-intelligence.",
-    "thumbnail": "https://m.media-amazon.com/images/M/MV5BNzQzOTk3OTAtNDQ0Zi00ZTVkLWI0MTEtMDllZjNkYzNjNTc4L2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SY1000_CR0,0,675,1000_AL_.jpg",
+    "thumbnail": "https://cdnb.artstation.com/p/assets/images/images/050/376/053/large/richard-philpott-the-matrix-1.jpg?1654700577",
     "slug": "the_matrix",
     "video": "https://www.dropbox.com/scl/fi/8yqrzi44tnkim0t8g04uz/TheMatrix1999OfficialTrailer1-Sci-FiActionMovie-ezgif.com-crop-video.mp4?rlkey=nyz01o8gwk37u9x9xnxiuymnk&raw=1"
   },

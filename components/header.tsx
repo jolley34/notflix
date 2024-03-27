@@ -42,7 +42,7 @@ export default function Header() {
             </h2>
           </Link>
 
-          <ul className="navbar flex gap-4 lg:text-sm font-normal">
+          <ul className="navbar flex gap-4 text-sm lg:text-sm font-normal">
             <Link href={"/"}>
               <li className="cursor-pointer">Hem</li>
             </Link>
