@@ -22,7 +22,7 @@ export default function FilmView({ params }: PageProps) {
 
   useEffect(() => {
     if (videoRef.current) {
-      videoRef.current.volume = muted ? 0 : 0.25;
+      videoRef.current.volume = muted ? 0 : 0.1;
     }
   }, [muted]);
 
