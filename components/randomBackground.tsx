@@ -55,7 +55,7 @@ export default function RandomBackground() {
         );
         setCurrentImageIndex(randomImageIndex);
       }
-    }, 2000);
+    }, 20000);
 
     return () => clearInterval(interval);
   }, [
