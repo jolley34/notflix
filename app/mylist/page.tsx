@@ -9,11 +9,17 @@ import {
 } from "@/components/ui/carousel";
 import { Card, CardContent } from "@mui/material";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 import { useMovies } from "../../context/MovieContext";
 
 export default function MyList() {
   const { favoriteMovies } = useMovies();
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   return (
     <div className="h-screen flex justify-stretch items-center px-14">
@@ -50,7 +56,9 @@ export default function MyList() {
                     </Link>
                   </CardContent>
                   <div className="sticky bottom-0 w-full p-4 text-white bg-zinc-900">
-                    <FavoriteButton slug={movie.slug} useCloseIcon={true} />
+                    {isClient && (
+                      <FavoriteButton slug={movie.slug} useCloseIcon={true} />
+                    )}
                   </div>
                 </Card>
               </CarouselItem>
