@@ -1,7 +1,4 @@
 "use client";
-
-"use client";
-
 import {
   PropsWithChildren,
   createContext,
