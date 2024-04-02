@@ -21,7 +21,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18.x' # Update the Node.js version to meet Next.js requirements
+          node-version: '20.x' # Update the Node.js version to meet Next.js requirements
 
       - name: Install Dependencies
         run: npm install
