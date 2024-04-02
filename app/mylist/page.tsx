@@ -47,7 +47,7 @@ export default function MyList() {
                     </Link>
                   </CardContent>
                   <div className="sticky bottom-0 w-full p-4 text-white bg-zinc-900">
-                    <FavoriteButton slug={movie.slug} />
+                    <FavoriteButton slug={movie.slug} useCloseIcon={true} />
                   </div>
                 </Card>
               </CarouselItem>
