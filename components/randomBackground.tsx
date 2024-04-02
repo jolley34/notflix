@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 const randomFrames = [
   {
@@ -17,9 +17,17 @@ const randomFrames = [
       "/image-8-st.png",
       "/image-9-st.png",
       "/image-10-st.png",
+      "/image-11-st.png",
+      "/image-12-st.png",
+      "/image-13-st.png",
+      "/image-14-st.png",
     ],
     logo: "/StrangerThings_logo.svg",
-    trailerSrc: "/stranger-things-trailer.mp4",
+    trailerSrc: [
+      "/stranger-things-trailer.mp4",
+      "/stranger-things-trailer-2.mp4",
+      "/stranger-things-trailer-3.mp4",
+    ],
   },
 ];
 
@@ -27,31 +35,53 @@ export default function RandomBackground() {
   const [playingTrailer, setPlayingTrailer] = useState(false);
   const [currentFrame] = useState(randomFrames[0]);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const imageRef = useRef(null);
+  const [currentTrailerIndex, setCurrentTrailerIndex] = useState(0);
 
   useEffect(() => {
+    const randomInitialImageIndex = Math.floor(
+      Math.random() * currentFrame.images.length
+    );
+    setCurrentImageIndex(randomInitialImageIndex);
+
+    const randomInitialTrailerIndex = Math.floor(
+      Math.random() * currentFrame.trailerSrc.length
+    );
+    setCurrentTrailerIndex(randomInitialTrailerIndex);
+
     const interval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) =>
-        prevIndex === currentFrame.images.length - 1 ? 0 : prevIndex + 1
-      );
+      if (!playingTrailer) {
+        const randomImageIndex = Math.floor(
+          Math.random() * currentFrame.images.length
+        );
+        setCurrentImageIndex(randomImageIndex);
+      }
     }, 2000);
 
     return () => clearInterval(interval);
-  }, [currentFrame.images.length]);
+  }, [
+    currentFrame.images.length,
+    currentFrame.trailerSrc.length,
+    playingTrailer,
+  ]);
 
   const playTrailer = () => {
     setPlayingTrailer(true);
+    const randomTrailerIndex = Math.floor(
+      Math.random() * currentFrame.trailerSrc.length
+    );
+    setCurrentTrailerIndex(randomTrailerIndex);
   };
 
   const endTrailer = () => {
     setPlayingTrailer(false);
+    setCurrentImageIndex(0);
   };
 
   return (
     <div className="relative h-screen w-screen">
       {playingTrailer ? (
         <video
-          src={currentFrame.trailerSrc}
+          src={currentFrame.trailerSrc[currentTrailerIndex]}
           autoPlay
           className="absolute top-0 left-0 w-full h-full object-cover"
           onEnded={endTrailer}
