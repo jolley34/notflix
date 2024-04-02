@@ -32,7 +32,10 @@ export default function MyList() {
           )}
           <CarouselContent className="w-full h-full ">
             {favoriteMovies.map((movie) => (
-              <CarouselItem className="sm:basis-1/2 md:basis-1/4 lg:basis-1/6 basis-1/2 ">
+              <CarouselItem
+                key={movie.slug}
+                className="sm:basis-1/2 md:basis-1/4 lg:basis-1/6 basis-1/2 "
+              >
                 <Card className="border-0 cursor-pointer">
                   <CardContent className="flex  p-0 h-full">
                     <Link
