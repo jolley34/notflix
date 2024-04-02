@@ -61,10 +61,10 @@ export default function MovieGrid() {
                       {trendingMovies.map((movie, index) => (
                         <CarouselItem
                           key={index}
-                          className="sm:basis-1/2 md:basis-1/4 lg:basis-1/4"
+                          className="sm:basis-1/2 md:basis-1/4 lg:basis-1/6 basis-1/2 w-full"
                         >
                           <Card className="p-0 border-0 cursor-pointer">
-                            <CardContent className="p-0">
+                            <CardContent className="flex items-center justify-center p-0 w-full h-full overflow-hidden ">
                               <Link
                                 href={`/filmview/${movie.slug}`}
                                 as={`/filmview/${movie.slug}`}
@@ -104,7 +104,7 @@ export default function MovieGrid() {
                       {recommendedMovies.map((movie, index) => (
                         <CarouselItem
                           key={index}
-                          className="sm:basis-1/2 md:basis-1/4 lg:basis-1/4 "
+                          className="sm:basis-1/2 md:basis-1/4 lg:basis-1/6 basis-1/2 w-full"
                         >
                           <Card className="p-0 border-0 cursor-pointer">
                             <CardContent className="p-0">
@@ -147,16 +147,16 @@ export default function MovieGrid() {
                       {searchResults.map((movie, index) => (
                         <CarouselItem
                           key={index}
-                          className="sm:basis-1/2 md:basis-1/4 lg:basis-1/4 w-full"
+                          className="sm:basis-1/2 md:basis-1/4 lg:basis-1/4 basis-1/2 w-full"
                         >
                           <Card className="p-0 border-0 cursor-pointer">
-                            <CardContent className="flex items-center justify-center p-0 h-64">
+                            <CardContent className="flex items-center justify-center p-0 h-full">
                               <Link
                                 href={`/filmview/${movie.slug}`}
                                 as={`/filmview/${movie.slug}`}
                               >
                                 <img
-                                  className="object-cover w-full h-full"
+                                  className="object-cover w-screen h-56"
                                   src={movie.thumbnail}
                                   alt={movie.title}
                                 />

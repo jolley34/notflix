@@ -31,9 +31,9 @@ export default function FilmView({ params }: PageProps) {
   }
 
   return (
-    <div className="flex justify-center">
-      <div className="flex w-full h-full relative">
-        <section className="w-full h-screen bg-zinc-700">
+    <div className="flex h-screen justify-center">
+      <div className="flex w-full h-full relative max-md:flex-col">
+        <section>
           <video
             ref={videoRef}
             className="w-screen h-screen object-cover"
@@ -51,10 +51,12 @@ export default function FilmView({ params }: PageProps) {
             </div>
           </IconButton>
         </section>
-        <section className="w-full h-screen flex items-center justify-center p-20">
+        <section className="w-full h-screen max-md:absolute max-md:h-1/2 max-md:bottom-0 max-md:bg-background flex items-center justify-center p-20">
           <div className="flex flex-col gap-2">
             <div className="flex align-middle justify-between">
-              <h1 className="font-bold text-4xl w-3/4">{movie.title}</h1>
+              <h1 className="font-bold text-4xl w-3/4 max-md:text-lg">
+                {movie.title}
+              </h1>
               <FavoriteButton slug={movie.slug} />
             </div>
             <p className="font-thin ">Release : {movie.year}</p>

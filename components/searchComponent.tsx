@@ -2,17 +2,21 @@
 
 import { Input } from "@/components/ui/input";
 import { useSearch } from "@/context/SearchContext";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 
-export default function SearchComponent() {
-  const [isOpen, setIsOpen] = useState(false);
-  const { searchTerm, setSearchTerm, searchResults } = useSearch();
+interface Props {
+  isOpen: boolean;
+  toggleSearch: () => void;
+}
+
+const SearchComponent: React.FC<Props> = ({ isOpen, toggleSearch }) => {
+  const { searchTerm, setSearchTerm } = useSearch();
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     const handleKeyPress = (event: KeyboardEvent) => {
       if (event.key === "Escape" && isOpen) {
-        toggleSearchInput();
+        toggleSearch();
       }
     };
 
@@ -21,30 +25,17 @@ export default function SearchComponent() {
     return () => {
       document.removeEventListener("keydown", handleKeyPress);
     };
-  }, [isOpen]);
-
-  const toggleSearchInput = () => {
-    if (isOpen) {
-      setSearchTerm("");
-    }
-    setIsOpen(!isOpen);
-    if (
-      !isOpen &&
-      inputRef.current &&
-      inputRef.current instanceof HTMLInputElement
-    ) {
-      inputRef.current.focus();
-      const inputLength = inputRef.current.value
-        ? inputRef.current.value.length
-        : 0;
-      inputRef.current.setSelectionRange(0, inputLength);
-    }
-  };
+  }, [isOpen, toggleSearch]);
 
   const handleSearchInputChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     setSearchTerm(event.target.value);
+  };
+
+  const handleCancelSearch = () => {
+    setSearchTerm(""); // Clear the search term
+    toggleSearch(); // Close the search
   };
 
   return (
@@ -60,7 +51,7 @@ export default function SearchComponent() {
           />
           <button
             className="ml-2 bg-red-600 text-white px-3 py-1 rounded"
-            onClick={toggleSearchInput}
+            onClick={handleCancelSearch} // Call handleCancelSearch instead
           >
             Avbryt
           </button>
@@ -73,7 +64,7 @@ export default function SearchComponent() {
           strokeWidth="1.5"
           stroke="currentColor"
           className="w-6 h-6 cursor-pointer"
-          onClick={toggleSearchInput}
+          onClick={toggleSearch}
         >
           <path
             strokeLinecap="round"
@@ -84,4 +75,6 @@ export default function SearchComponent() {
       )}
     </div>
   );
-}
+};
+
+export default SearchComponent;
