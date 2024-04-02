@@ -1,3 +1,13 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": "next/core-web-vitals",
+  "rules": {
+    "no-restricted-properties": [
+      "error",
+      {
+        "object": "localStorage",
+        "property": "setItem",
+        "message": "Please don't use localStorage directly. Use a wrapper or utility function."
+      }
+    ]
+  }
 }
