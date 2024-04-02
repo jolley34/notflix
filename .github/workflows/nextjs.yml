@@ -21,7 +21,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '14.x' # You can change the version if needed
+          node-version: '18.x' # Update the Node.js version to meet Next.js requirements
 
       - name: Install Dependencies
         run: npm install
@@ -53,4 +53,3 @@ jobs:
         with:
           branch: gh-pages
           folder: .next
-
