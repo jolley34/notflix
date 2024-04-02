@@ -5,20 +5,17 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import SearchComponent from "./searchComponent";
+import SearchComponent from "../components/searchComponent";
 
 export default function Header() {
   const [scrolling, setScrolling] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY === 0) {
-        setScrolling(false);
-      } else {
-        setScrolling(true);
-      }
+      setScrolling(window.scrollY > 0);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -36,6 +33,10 @@ export default function Header() {
     setIsMenuOpen(false);
   };
 
+  const toggleSearch = () => {
+    setIsSearchOpen(!isSearchOpen);
+  };
+
   return (
     <>
       <header
@@ -46,14 +47,16 @@ export default function Header() {
         }`}
       >
         <div className="flex items-center gap-10 flex-wrap">
-          <Link href={"/"}>
-            <h2
-              className="title scroll-m-20 text-xl font-bold tracking-tight lg:text-3xl text-red-600 cursor-pointer"
-              onClick={closeMenu}
-            >
-              NotFlix
-            </h2>
-          </Link>
+          {!isSearchOpen && (
+            <Link href={"/"}>
+              <h2
+                className="title scroll-m-20 text-xl font-bold tracking-tight lg:text-3xl text-red-600 cursor-pointer"
+                onClick={closeMenu}
+              >
+                NotFlix
+              </h2>
+            </Link>
+          )}
 
           <div className="md:hidden">
             {isMenuOpen && (
@@ -101,7 +104,12 @@ export default function Header() {
           <ul className="second-navbar flex gap-4 lg:text-sm items-center">
             {!(
               pathname.startsWith("/filmview") || pathname.startsWith("/mylist")
-            ) && <SearchComponent />}
+            ) && (
+              <SearchComponent
+                isOpen={isSearchOpen}
+                toggleSearch={toggleSearch}
+              />
+            )}
             <div className="hidden max-md:block">
               <MenuIcon
                 className="text-white cursor-pointer"

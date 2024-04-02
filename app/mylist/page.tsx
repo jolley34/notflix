@@ -32,7 +32,7 @@ export default function MyList() {
           )}
           <CarouselContent>
             {favoriteMovies.map((movie) => (
-              <CarouselItem className="sm:basis-1/2 md:basis-1/4 lg:basis-1/6 w-full">
+              <CarouselItem className="sm:basis-1/2 md:basis-1/4 lg:basis-1/6 w-full ">
                 <Card className="p-0  border-0 cursor-pointer ">
                   <CardContent className="flex items-center justify-center p-0 w-full h-full overflow-hidden ">
                     <Link
