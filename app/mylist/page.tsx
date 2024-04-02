@@ -39,8 +39,8 @@ export default function MyList() {
                 <Card className="border-0 cursor-pointer">
                   <CardContent className="flex  p-0 h-full">
                     <Link
-                      href={`./filmview/${movie.slug}`}
-                      as={`./filmview/${movie.slug}`}
+                      href={`/filmview/${movie.slug}`}
+                      as={`/filmview/${movie.slug}`}
                     >
                       <img
                         className="object-cover w-screen h-56"
