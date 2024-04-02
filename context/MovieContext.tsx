@@ -1,5 +1,4 @@
 "use client";
-"use client";
 import {
   PropsWithChildren,
   createContext,
@@ -42,39 +41,31 @@ export default function MovieProvider(props: PropsWithChildren<{}>) {
   const [movies, setMovies] = useState<Movie[]>(moviesData);
   const [favoriteMovies, setFavoriteMovies] = useState<Movie[]>([]);
 
-  const toggleFavorite = (slug: string) => {
-    if (typeof window !== "undefined") {
-      // Kontrollera att det körs i klientmiljön
-      setFavoriteMovies((prevFavorites) => {
-        const isFavorite = prevFavorites.some((movie) => movie.slug === slug);
-        if (isFavorite) {
-          return prevFavorites.filter((movie) => movie.slug !== slug);
-        } else {
-          const movieToAdd = movies.find((movie) => movie.slug === slug);
-          if (movieToAdd) {
-            return [...prevFavorites, movieToAdd];
-          }
-        }
-        return prevFavorites;
-      });
-    } else {
-      console.warn("localStorage is not available in this environment.");
-    }
-  };
-
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      // Kontrollera att det körs i klientmiljön
-      const savedFavorites = localStorage.getItem("favoriteMovies");
-      setFavoriteMovies(savedFavorites ? JSON.parse(savedFavorites) : []);
+    // Hämta sparade favoritfilmer när komponenten monteras på klienten
+    const savedFavorites = localStorage.getItem("favoriteMovies");
+    if (savedFavorites) {
+      setFavoriteMovies(JSON.parse(savedFavorites));
     }
   }, []);
 
+  const toggleFavorite = (slug: string) => {
+    setFavoriteMovies((prevFavorites) => {
+      const isFavorite = prevFavorites.some((movie) => movie.slug === slug);
+      if (isFavorite) {
+        return prevFavorites.filter((movie) => movie.slug !== slug);
+      } else {
+        const movieToAdd = movies.find((movie) => movie.slug === slug);
+        if (movieToAdd) {
+          return [...prevFavorites, movieToAdd];
+        }
+      }
+      return prevFavorites;
+    });
+  };
+
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      // Kontrollera att det körs i klientmiljön
-      localStorage.setItem("favoriteMovies", JSON.stringify(favoriteMovies));
-    }
+    localStorage.setItem("favoriteMovies", JSON.stringify(favoriteMovies));
   }, [favoriteMovies]);
 
   return (
