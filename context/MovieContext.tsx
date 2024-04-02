@@ -1,5 +1,7 @@
 "use client";
 
+"use client";
+
 import {
   PropsWithChildren,
   createContext,
@@ -45,10 +47,6 @@ export default function MovieProvider(props: PropsWithChildren<{}>) {
     return savedFavorites ? JSON.parse(savedFavorites) : [];
   });
 
-  useEffect(() => {
-    localStorage.setItem("favoriteMovies", JSON.stringify(favoriteMovies));
-  }, [favoriteMovies]);
-
   const toggleFavorite = (slug: string) => {
     setFavoriteMovies((prevFavorites) => {
       const isFavorite = prevFavorites.some((movie) => movie.slug === slug);
@@ -63,6 +61,10 @@ export default function MovieProvider(props: PropsWithChildren<{}>) {
       return prevFavorites;
     });
   };
+
+  useEffect(() => {
+    localStorage.setItem("favoriteMovies", JSON.stringify(favoriteMovies));
+  }, [favoriteMovies]);
 
   return (
     <MovieContext.Provider
