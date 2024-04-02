@@ -48,7 +48,7 @@ export default function Header() {
       >
         <div className="flex items-center gap-10 flex-wrap">
           {!isSearchOpen && (
-            <Link href={"/"}>
+            <Link href={"./"}>
               <h2
                 className="title scroll-m-20 text-xl font-bold tracking-tight lg:text-3xl text-red-600 cursor-pointer"
                 onClick={closeMenu}
@@ -65,7 +65,7 @@ export default function Header() {
                   className="text-white absolute top-5 right-5 cursor-pointer"
                   onClick={toggleMenu}
                 />
-                <Link href={"/"}>
+                <Link href={"./"}>
                   <li className="cursor-pointer" onClick={closeMenu}>
                     Hem
                   </li>
@@ -73,7 +73,7 @@ export default function Header() {
                 <li className="text-white">Serier</li>
                 <li className="text-white">Filmer</li>
                 <li className="text-white">Nytt och populärt</li>
-                <Link href={"/mylist"}>
+                <Link href={"./mylist"}>
                   <li className="text-white cursor-pointer" onClick={closeMenu}>
                     Min lista
                   </li>
@@ -84,7 +84,7 @@ export default function Header() {
           </div>
 
           <ul className="navbar hidden md:flex gap-4 text-sm lg:text-sm md:text-xs font-normal">
-            <Link href={"/"}>
+            <Link href={"./"}>
               <li className="cursor-pointer" onClick={closeMenu}>
                 Hem
               </li>
@@ -92,7 +92,7 @@ export default function Header() {
             <li>Serier</li>
             <li>Filmer</li>
             <li>Nytt och populärt</li>
-            <Link href={"/mylist"}>
+            <Link href={"./mylist"}>
               <li className="cursor-pointer" onClick={closeMenu}>
                 Min lista
               </li>
