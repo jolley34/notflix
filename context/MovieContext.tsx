@@ -39,15 +39,10 @@ const MovieContext = createContext<MovieContextValue>({
 
 export default function MovieProvider(props: PropsWithChildren<{}>) {
   const [movies, setMovies] = useState<Movie[]>(moviesData);
-  const [favoriteMovies, setFavoriteMovies] = useState<Movie[]>([]);
-
-  useEffect(() => {
-    // Hämta sparade favoritfilmer när komponenten monteras på klienten
+  const [favoriteMovies, setFavoriteMovies] = useState<Movie[]>(() => {
     const savedFavorites = localStorage.getItem("favoriteMovies");
-    if (savedFavorites) {
-      setFavoriteMovies(JSON.parse(savedFavorites));
-    }
-  }, []);
+    return savedFavorites ? JSON.parse(savedFavorites) : [];
+  });
 
   const toggleFavorite = (slug: string) => {
     setFavoriteMovies((prevFavorites) => {
