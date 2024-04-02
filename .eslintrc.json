@@ -8,6 +8,7 @@
         "property": "setItem",
         "message": "Please don't use localStorage directly. Use a wrapper or utility function."
       }
-    ]
+    ],
+    "no-restricted-globals": ["error", "localStorage"]
   }
 }
