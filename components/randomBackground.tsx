@@ -7,96 +7,111 @@ const randomFrames = [
   {
     series: "StrangerThings",
     images: [
-      "/image-1.jpeg",
-      "/image-2.png",
-      "/image-3.png",
-      "/image-4.png",
-      "/image-5.png",
+      "/image-1-st.jpeg",
+      "/image-2-st.png",
+      "/image-3-st.png",
+      "/image-4-st.png",
+      "/image-5-st.png",
+      "/image-6-st.png",
+      "/image-7-st.png",
+      "/image-8-st.png",
+      "/image-9-st.png",
+      "/image-10-st.png",
+      "/image-11-st.png",
+      "/image-12-st.png",
+      "/image-13-st.png",
+      "/image-14-st.png",
     ],
     logo: "/StrangerThings_logo.svg",
-    trailerSrc: "/frontpage-video-v2.mp4",
-  },
-  {
-    series: "Ozark",
-    images: [
-      "/image-6.png",
-      "/image-7.png",
-      "/image-8.png",
-      "/image-9.png",
-      "/image-10.png",
+    trailerSrc: [
+      "/stranger-things-trailer.mp4",
+      "/stranger-things-trailer-2.mp4",
+      "/stranger-things-trailer-3.mp4",
     ],
-    logo: "/ozark-logo.svg",
-    trailerSrc: "/ozark-trailer.mp4",
   },
 ];
 
 export default function RandomBackground() {
-  const [currentFrameIndex, setCurrentFrameIndex] = useState(
-    Math.floor(Math.random() * randomFrames.length)
-  );
-  const [currentImageIndex, setCurrentImageIndex] = useState(
-    Math.floor(Math.random() * 5)
-  );
   const [playingTrailer, setPlayingTrailer] = useState(false);
+  const [currentFrame] = useState(randomFrames[0]);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [currentTrailerIndex, setCurrentTrailerIndex] = useState(0);
 
   useEffect(() => {
+    const randomInitialImageIndex = Math.floor(
+      Math.random() * currentFrame.images.length
+    );
+    setCurrentImageIndex(randomInitialImageIndex);
+
+    const randomInitialTrailerIndex = Math.floor(
+      Math.random() * currentFrame.trailerSrc.length
+    );
+    setCurrentTrailerIndex(randomInitialTrailerIndex);
+
     const interval = setInterval(() => {
       if (!playingTrailer) {
-        setCurrentImageIndex(Math.floor(Math.random() * 5));
-        setCurrentFrameIndex(Math.floor(Math.random() * randomFrames.length));
+        const randomImageIndex = Math.floor(
+          Math.random() * currentFrame.images.length
+        );
+        setCurrentImageIndex(randomImageIndex);
       }
     }, 20000);
-    return () => clearInterval(interval);
-  }, [playingTrailer]);
 
-  const currentFrame = randomFrames[currentFrameIndex];
-  const currentLogo = currentFrame.logo;
+    return () => clearInterval(interval);
+  }, [
+    currentFrame.images.length,
+    currentFrame.trailerSrc.length,
+    playingTrailer,
+  ]);
 
   const playTrailer = () => {
     setPlayingTrailer(true);
+    const randomTrailerIndex = Math.floor(
+      Math.random() * currentFrame.trailerSrc.length
+    );
+    setCurrentTrailerIndex(randomTrailerIndex);
   };
 
   const endTrailer = () => {
     setPlayingTrailer(false);
+    setCurrentImageIndex(0);
   };
 
   return (
     <div className="relative h-screen w-screen">
       {playingTrailer ? (
         <video
-          src={currentFrame.trailerSrc}
+          src={currentFrame.trailerSrc[currentTrailerIndex]}
           autoPlay
           className="absolute top-0 left-0 w-full h-full object-cover"
           onEnded={endTrailer}
         />
       ) : (
-        randomFrames.map((frame, index) => (
-          <img
-            key={index}
-            src={frame.images[currentImageIndex]}
-            alt="Random Frame"
-            className="absolute top-0 left-0 w-screen h-screen object-cover transition-opacity duration-1000"
-            style={{
-              opacity: index === currentFrameIndex ? 1 : 0,
-            }}
-          />
-        ))
+        <>
+          {currentFrame.images.map((image, index) => (
+            <img
+              key={index}
+              src={image}
+              alt="Random Frame"
+              className="absolute w-screen h-screen object-cover"
+              style={{
+                opacity: index === currentImageIndex ? 1 : 0,
+                transition: "opacity 1s ease",
+              }}
+            />
+          ))}
+        </>
       )}
       <div className="absolute px-16 flex justify-center items-center top-1/2 -translate-y-1/2">
         <div className="flex flex-col gap-4 items-left">
           <img
-            key={currentLogo}
-            src={currentLogo}
+            key={currentFrame.logo}
+            src={currentFrame.logo}
             alt="Random Logo"
-            className="transition-opacity duration-1000"
             style={{
               width: "400px",
               height: "auto",
               opacity: 0.7,
-              filter:
-                currentFrame.series === "Ozark"
-                  ? "brightness(0) invert(1)"
-                  : "none",
             }}
           />
           {!playingTrailer && (
@@ -109,12 +124,11 @@ export default function RandomBackground() {
           </Button>
         </div>
       </div>
-
       <div
         className="absolute inset-x-0 bottom-0 h-52"
         style={{
           background:
-            "linear-gradient(180deg, transparent 0 5%, hsl(var(--background)) 100% 100%)",
+            "linear-gradient(180deg, transparent 0%, hsl(var(--background)) 100%)",
         }}
       ></div>
     </div>
