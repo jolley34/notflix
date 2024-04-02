@@ -1,6 +1,5 @@
 "use client";
 
-// SearchComponent.tsx
 import { Input } from "@/components/ui/input";
 import { useSearch } from "@/context/SearchContext";
 import React, { useEffect, useRef } from "react";
@@ -34,6 +33,11 @@ const SearchComponent: React.FC<Props> = ({ isOpen, toggleSearch }) => {
     setSearchTerm(event.target.value);
   };
 
+  const handleCancelSearch = () => {
+    setSearchTerm(""); // Clear the search term
+    toggleSearch(); // Close the search
+  };
+
   return (
     <div ref={inputRef}>
       {isOpen ? (
@@ -47,7 +51,7 @@ const SearchComponent: React.FC<Props> = ({ isOpen, toggleSearch }) => {
           />
           <button
             className="ml-2 bg-red-600 text-white px-3 py-1 rounded"
-            onClick={toggleSearch}
+            onClick={handleCancelSearch} // Call handleCancelSearch instead
           >
             Avbryt
           </button>
