@@ -1,13 +1,15 @@
 "use client";
 
+import CloseIcon from "@mui/icons-material/Close";
+import MenuIcon from "@mui/icons-material/Menu";
 import Link from "next/link";
-
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import SearchComponent from "./searchComponent";
 
 export default function Header() {
   const [scrolling, setScrolling] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -26,6 +28,14 @@ export default function Header() {
     };
   }, []);
 
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
+
   return (
     <>
       <header
@@ -37,20 +47,52 @@ export default function Header() {
       >
         <div className="flex items-center gap-10 flex-wrap">
           <Link href={"/"}>
-            <h2 className="title scroll-m-20 text-xl font-bold tracking-tight lg:text-3xl text-red-600 cursor-pointer">
+            <h2
+              className="title scroll-m-20 text-xl font-bold tracking-tight lg:text-3xl text-red-600 cursor-pointer"
+              onClick={closeMenu}
+            >
               NotFlix
             </h2>
           </Link>
 
-          <ul className="navbar flex gap-4 text-sm lg:text-sm font-normal">
+          <div className="md:hidden">
+            {isMenuOpen && (
+              <ul className="dropdown-menu absolute top-0 left-0 w-screen h-screen bg-zinc-900 flex flex-col justify-center items-center">
+                <CloseIcon
+                  className="text-white absolute top-5 right-5 cursor-pointer"
+                  onClick={toggleMenu}
+                />
+                <Link href={"/"}>
+                  <li className="cursor-pointer" onClick={closeMenu}>
+                    Hem
+                  </li>
+                </Link>
+                <li className="text-white">Serier</li>
+                <li className="text-white">Filmer</li>
+                <li className="text-white">Nytt och populärt</li>
+                <Link href={"/mylist"}>
+                  <li className="text-white cursor-pointer" onClick={closeMenu}>
+                    Min lista
+                  </li>
+                </Link>
+                <li className="text-white">Bläddra efter språk</li>
+              </ul>
+            )}
+          </div>
+
+          <ul className="navbar hidden md:flex gap-4 text-sm lg:text-sm md:text-xs font-normal">
             <Link href={"/"}>
-              <li className="cursor-pointer">Hem</li>
+              <li className="cursor-pointer" onClick={closeMenu}>
+                Hem
+              </li>
             </Link>
             <li>Serier</li>
             <li>Filmer</li>
             <li>Nytt och populärt</li>
             <Link href={"/mylist"}>
-              <li className="cursor-pointer">Min lista</li>
+              <li className="cursor-pointer" onClick={closeMenu}>
+                Min lista
+              </li>
             </Link>
             <li>Bläddra efter språk</li>
           </ul>
@@ -60,23 +102,13 @@ export default function Header() {
             {!(
               pathname.startsWith("/filmview") || pathname.startsWith("/mylist")
             ) && <SearchComponent />}
-            <li>Barn</li>
-            <li>
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
-                  d="M14 3V3.28988C16.8915 4.15043 19 6.82898 19 10V17H20V19H4V17H5V10C5 6.82898 7.10851 4.15043 10 3.28988V3C10 1.89543 10.8954 1 12 1C13.1046 1 14 1.89543 14 3ZM7 17H17V10C17 7.23858 14.7614 5 12 5C9.23858 5 7 7.23858 7 10V17ZM14 21V20H10V21C10 22.1046 10.8954 23 12 23C13.1046 23 14 22.1046 14 21Z"
-                  fill="currentColor"
-                />
-              </svg>
-            </li>
+            <div className="hidden max-md:block">
+              <MenuIcon
+                className="text-white cursor-pointer"
+                onClick={toggleMenu}
+              />
+            </div>
+
             <li>
               <img
                 className="profile-picture w-6 h-6 object-cover"
