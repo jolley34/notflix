@@ -40,8 +40,12 @@ const MovieContext = createContext<MovieContextValue>({
 export default function MovieProvider(props: PropsWithChildren<{}>) {
   const [movies, setMovies] = useState<Movie[]>(moviesData);
   const [favoriteMovies, setFavoriteMovies] = useState<Movie[]>(() => {
-    const savedFavorites = localStorage.getItem("favoriteMovies");
-    return savedFavorites ? JSON.parse(savedFavorites) : [];
+    if (typeof localStorage !== "undefined") {
+      const savedFavorites = localStorage.getItem("favoriteMovies");
+      return savedFavorites ? JSON.parse(savedFavorites) : [];
+    } else {
+      return [];
+    }
   });
 
   const toggleFavorite = (slug: string) => {
@@ -60,7 +64,9 @@ export default function MovieProvider(props: PropsWithChildren<{}>) {
   };
 
   useEffect(() => {
-    localStorage.setItem("favoriteMovies", JSON.stringify(favoriteMovies));
+    if (typeof localStorage !== "undefined") {
+      localStorage.setItem("favoriteMovies", JSON.stringify(favoriteMovies));
+    }
   }, [favoriteMovies]);
 
   return (
