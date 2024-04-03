@@ -5,10 +5,8 @@ import { Button } from "@/components/ui/button";
 import VolumeOffIcon from "@mui/icons-material/VolumeOff";
 import VolumeUpIcon from "@mui/icons-material/VolumeUp";
 import { IconButton } from "@mui/material";
-import { GetStaticPaths } from "next";
-import path from "path";
 import { useEffect, useRef, useState } from "react";
-import { Movie, useMovies } from "../../../context/MovieContext";
+import { useMovies } from "../../../context/MovieContext";
 
 type PageProps = { params: { slug: string } };
 
@@ -76,17 +74,3 @@ export default function FilmView({ params }: PageProps) {
     </div>
   );
 }
-
-export const getStaticPaths: GetStaticPaths = async () => {
-  const dataFilePath = path.join(process.cwd(), "movies.json");
-  const jsonData = require(dataFilePath);
-  const movies: Movie[] = jsonData.movies;
-  const paths = movies.map((movie: Movie) => ({
-    params: { slug: movie.slug },
-  }));
-
-  return {
-    paths,
-    fallback: false,
-  };
-};
